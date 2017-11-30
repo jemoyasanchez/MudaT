@@ -9,10 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.itla.mudat.View.RegistroUsuario;
+
 public class MainActivity extends AppCompatActivity {
 
   private EditText txnombre;
   private Button bmostrar;
+  private Button Bregistrousuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +23,17 @@ public class MainActivity extends AppCompatActivity {
 
        txnombre=(EditText) findViewById(R.id.TXTnombre);
        bmostrar=(Button) findViewById(R.id.BTNmostrar);
+       Bregistrousuario=(Button) findViewById(R.id.Breigistrousu);
 
+        Bregistrousuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent view =new Intent(MainActivity.this,RegistroUsuario.class);
+
+                startActivity(view);
+
+            }
+        });
        bmostrar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

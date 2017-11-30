@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">MudaT</string>
     <string name="Mostrar">Mostrar</string>
+    <string name="Registrousuario">REGISTRO USUARIO</string>
+    <string name="Registrousuariolistar">Listar Usuarios</string>
+    <string name="title_activity_login">Sign in</string>
+
+
+    <string name="Nombreusuario">Nombre de Usuario</string>
+    <string name="Identificacion">Indentificación</string>
+    <string name="Email">Correo Electronico</string>
+    <string name="Telefono">Teléfono</string>
+    <string name="Contrasena">Contraseña</string>
+    <string name="rRepetircontrasena">Repetir Contraseña</string>
+    <string name="Registrar">Registrar</string>
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
 </resources>

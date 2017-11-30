@@ -1,10 +1,11 @@
 package com.itla.mudat.Entity;
 
+public enum TipoUsuario {
+    PUBLICADOR , CLIENTE;
 
-public enum Categoria {
-NACIONAL,INTERNACIONAL;
 
-    public static final String nomtableCategoria="Categoria";
+
+    public static final String nomtableTipoUsuario="TipoUsuario";
     public static final String nomid="id";
     public static final String nomnombre="nombre";
 
@@ -26,4 +27,8 @@ NACIONAL,INTERNACIONAL;
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+
+
+
 }
