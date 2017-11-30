@@ -77,19 +77,19 @@ public class RegistroUsuario extends AppCompatActivity {
 Blistarusuarios.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        try {
-            UsuarioDao = new UsuarioDao(getApplicationContext());
-            List<Usuario> listausu =new ArrayList<Usuario>();
-            listausu=(List<Usuario> ) UsuarioDao.Listar();
-            if (listausu!=null) {
-                for (Usuario usu : listausu) {
-                    Toast.makeText(getApplicationContext(), usu.toString(), Toast.LENGTH_LONG).show();
-                }
-            }
-        }catch (Exception e)
-        {
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-        }
+//        try {
+//            UsuarioDao = new UsuarioDao(getApplicationContext());
+//            List<Usuario> listausu =new ArrayList<Usuario>();
+//            listausu=(List<Usuario> ) UsuarioDao.Listar();
+//            if (listausu!=null) {
+//                for (Usuario usu : listausu) {
+//                    Toast.makeText(getApplicationContext(), usu.toString(), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        }catch (Exception e)
+//        {
+//            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+//        }
     }
 });
 
