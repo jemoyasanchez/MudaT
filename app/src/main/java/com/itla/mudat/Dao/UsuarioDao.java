@@ -35,9 +35,8 @@ public class UsuarioDao implements Crud {
             cv.put(Usuario.nomtelefono, usuario.getTelefono());
             cv.put(Usuario.nomclave, usuario.getClave());
             cv.put(Usuario.nomstatus, usuario.getStatus());
-            db.beginTransaction();
-                     db.insert(Usuario.nomtableUsuario, null, cv);
-            db.endTransaction();
+
+            db.insert(Usuario.nomtableUsuario, null, cv);
 
         }
         catch (Exception e)
@@ -46,7 +45,7 @@ public class UsuarioDao implements Crud {
             return false;
         }
         finally {
-            db.close();
+           // db.close();
         }
         return true;
     }
@@ -55,7 +54,7 @@ public class UsuarioDao implements Crud {
     public Boolean Actualizar(Object item) {
         try {
             usuario = (Usuario) item;
-              db = connection.getWritableDatabase();
+            db = connection.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(Usuario.nomnombre, usuario.getNombre());
             cv.put(Usuario.nomtipousuario, String.valueOf(usuario.getTipousuario()));
@@ -64,9 +63,9 @@ public class UsuarioDao implements Crud {
             cv.put(Usuario.nomtelefono, usuario.getTelefono());
             cv.put(Usuario.nomclave, usuario.getClave());
             cv.put(Usuario.nomstatus, usuario.getStatus());
-            db.beginTransaction();
+         //   db.beginTransaction();
             db.update(Usuario.nomtableUsuario,  cv,Usuario.nomid+"=?",new String[] {""+usuario.getId()+""} );
-            db.endTransaction();
+        //    db.endTransaction();
         }
         catch (Exception e)
         {
@@ -74,18 +73,18 @@ public class UsuarioDao implements Crud {
             return false;
         }
         finally {
-            db.close();
+            //db.close();
         }
         return true;
     }
 
     @Override
     public Boolean Eliminar(Object item) {
-        try {
+        try
+        {
             usuario = (Usuario) item;
             db = connection.getWritableDatabase();
             db.delete(Usuario.nomtableUsuario, Usuario.nomid+"=?",new String[] {""+usuario.getId()+""});
-
         }
         catch (Exception e)
         {
@@ -93,7 +92,7 @@ public class UsuarioDao implements Crud {
             return false;
         }
         finally {
-            db.close();
+            //db.close();
         }
         return true;
     }
@@ -101,15 +100,13 @@ public class UsuarioDao implements Crud {
     @Override
     public List<?> Listar()   {
         List<Usuario> usuarioslista= new ArrayList<>();
-
-            db = connection.getReadableDatabase();
-            String columnas[] = new String[]{Usuario.nomid, Usuario.nomnombre, Usuario.nomemail, Usuario.nomtelefono};
-            Cursor cursor = db.query(Usuario.nomtableUsuario, columnas, null, null, null, null, null);
-           usuarioslista=null;
+        db = connection.getReadableDatabase();
+        String columnas[] = new String[]{Usuario.nomid, Usuario.nomnombre, Usuario.nomemail, Usuario.nomtelefono};
+        Cursor cursor = db.query(Usuario.nomtableUsuario, columnas, null, null, null, null, null);
+        usuarioslista=null;
             try
             {
                 if (cursor.moveToFirst()) {
-
                     while (!cursor.isAfterLast()) {
                         usuario = new Usuario();
                         usuario.setId(cursor.getInt(cursor.getColumnIndex(Usuario.nomid)));
@@ -124,14 +121,13 @@ public class UsuarioDao implements Crud {
 
                 } finally {
                     cursor.close();
-                    db.close();
+                   // db.close();
                 }
                 return usuarioslista;
     }
 
     @Override
     public Object Buscar(int item) {
-
         db =  connection.getReadableDatabase();
         String where = Usuario.nomid + " = ?";
         String[] whereArgs = {""+item+""};
@@ -140,7 +136,8 @@ public class UsuarioDao implements Crud {
 
         usuario = null;
         try {
-            if (cursor.moveToFirst()) {
+            if (cursor.moveToFirst())
+            {
 
                 usuario = new Usuario();
                 usuario.setId(cursor.getInt(cursor.getColumnIndex(Usuario.nomid)));
