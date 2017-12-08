@@ -53,7 +53,7 @@ public class RegistroAnuncio extends DialogFragment   {
             bregistroanuncio=(Button) v.findViewById(R.id.Bregistroanuncio);
             getDialog().setTitle("Registro de Anuncio");
 
-            getDialog().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
+            getDialog().getWindow().setFlags(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
             bregistroanuncio.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -257,5 +257,20 @@ public class RegistroAnuncio extends DialogFragment   {
         this.onDismissListener = onDismissListener;
     }
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        try
+        {
+            Dialog dialog = getDialog();
+            if (dialog != null)
+            {
+                int width = ViewGroup.LayoutParams.MATCH_PARENT;
+                int height = ViewGroup.LayoutParams.MATCH_PARENT;
+                dialog.getWindow().setLayout(width, height);
+            }
+        }catch (Exception e){e.printStackTrace();}
 
+    }
 }
