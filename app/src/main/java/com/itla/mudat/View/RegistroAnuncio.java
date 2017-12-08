@@ -3,6 +3,7 @@ package com.itla.mudat.View;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.view.WindowManager;
@@ -27,7 +28,7 @@ import com.itla.mudat.R;
 
 import static com.itla.mudat.Dao.DBConnection.LOG_T;
 
-public class RegistroAnuncio extends DialogFragment   {
+public class RegistroAnuncio extends android.support.v4.app.Fragment {
       private EditText txttitulo;
       private EditText txtdetalle;
       private EditText txtubicacion;
@@ -36,7 +37,7 @@ public class RegistroAnuncio extends DialogFragment   {
       private Button bregistroanuncio;
       private Anuncio anuncio;
       private AnuncioDao anuncioDao;
-    private DialogInterface.OnDismissListener onDismissListener;
+
 
     @Nullable
     @Override
@@ -51,9 +52,9 @@ public class RegistroAnuncio extends DialogFragment   {
             txtprecio=(EditText) v.findViewById(R.id.Txtprecios);
             txtcondicion=(EditText) v.findViewById(R.id.Txtcondicion);
             bregistroanuncio=(Button) v.findViewById(R.id.Bregistroanuncio);
-            getDialog().setTitle("Registro de Anuncio");
 
-            getDialog().getWindow().setFlags(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+
             bregistroanuncio.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -88,8 +89,12 @@ public class RegistroAnuncio extends DialogFragment   {
                                 if (anuncioDao.Crear(anuncio)) {
                                     toast("Anuncio Registrado Exitosamente.");
                                     Nuevo();
-                           Publicaciones.cargaranuncios(getActivity());
-                                    getDialog().dismiss();
+                                    try {
+                                        Publicaciones fragment1 = new Publicaciones();
+                                        android.support.v4.app.FragmentTransaction fragmentTransaction =getActivity().getSupportFragmentManager().beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameloy, fragment1);
+                                        fragmentTransaction.commit();
+                                    }catch (Exception e){e.printStackTrace();}
 
                                 }
                                 else {
@@ -231,46 +236,5 @@ public class RegistroAnuncio extends DialogFragment   {
         });
     }
 
-    @Override
-    public void onDismiss(final DialogInterface dialog)
-    {
-        super.onDismiss(dialog);
 
-        if ( getActivity() instanceof DialogInterface.OnDismissListener)
-        {
-            ((DialogInterface.OnDismissListener) getActivity()  ).onDismiss(dialog);
-        }
-    }
-
-    @Override
-    public void onDestroyView()
-    {
-        if (getDialog() != null && getRetainInstance())
-        {
-            getDialog().setDismissMessage(null);
-        }
-        super.onDestroyView();
-    }
-
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener)
-    {
-        this.onDismissListener = onDismissListener;
-    }
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-        try
-        {
-            Dialog dialog = getDialog();
-            if (dialog != null)
-            {
-                int width = ViewGroup.LayoutParams.MATCH_PARENT;
-                int height = ViewGroup.LayoutParams.MATCH_PARENT;
-                dialog.getWindow().setLayout(width, height);
-            }
-        }catch (Exception e){e.printStackTrace();}
-
-    }
 }

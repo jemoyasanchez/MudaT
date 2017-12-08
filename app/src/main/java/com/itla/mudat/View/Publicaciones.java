@@ -33,7 +33,7 @@ import com.itla.mudat.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Publicaciones extends Fragment implements  DialogInterface.OnDismissListener  {
+public class Publicaciones extends Fragment  {
     private static ListView listViewpublicacion;
     private static Button Bregistroanuncio;
 
@@ -50,14 +50,12 @@ public class Publicaciones extends Fragment implements  DialogInterface.OnDismis
                 @Override
                 public void onClick(View vw) {
                     try {
-                        final FragmentManager manager = getActivity().getFragmentManager();
-                        final RegistroAnuncio dialogf = new RegistroAnuncio();
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString("accion", "nuevo");
-                        dialogf.setArguments(bundle);
-                        dialogf.show(manager, "Dialog");
-
+                        try {
+                            RegistroAnuncio fragment1 = new RegistroAnuncio();
+                            android.support.v4.app.FragmentTransaction fragmentTransaction =getActivity().getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.frameloy, fragment1);
+                            fragmentTransaction.commit();
+                        }catch (Exception e){e.printStackTrace();}
 
                     } catch (Exception e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -74,19 +72,8 @@ public class Publicaciones extends Fragment implements  DialogInterface.OnDismis
 
     }
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        try
-        {
-            cargaranuncios(getActivity());
 
-        }
-        catch (Exception e)
-               {
-                   e.printStackTrace();
-        }
-    }
-
+  
 
 
 
