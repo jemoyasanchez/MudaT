@@ -49,30 +49,6 @@ public class TipoUsuarioDao implements Crud {
         return true;
     }
 
-    @Override
-    public Boolean Actualizar(Object item) {
-
-        try {
-            tipousuario = (TipoUsuario) item;
-              db = connection.getWritableDatabase();
-            ContentValues cv = new ContentValues();
-            cv.put(TipoUsuario.nomnombre, tipousuario.getNombre());
-            db.beginTransaction();
-            db.update(tipousuario.nomtableTipoUsuario,  cv,tipousuario.nomid+"=?",new String[] {""+tipousuario.getId()+""} );
-             db.endTransaction();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-        finally {
-            if (db.isOpen()) {
-                db.close();
-            }
-        }
-        return true;
-    }
 
     @Override
     public Boolean Eliminar(Object item) {
@@ -103,7 +79,7 @@ public class TipoUsuarioDao implements Crud {
         try
         {
             if (cursor.moveToFirst()) {
-
+              tipousuariolistar=new ArrayList<>();
                 while (!cursor.isAfterLast()) {
                    // tipousuario = new TipoUsuario();
                     tipousuario.setId(cursor.getInt(cursor.getColumnIndex(TipoUsuario.nomid)));

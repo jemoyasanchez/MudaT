@@ -15,7 +15,7 @@ public class UsuarioDao implements Crud {
     private DBConnection connection;
     private SQLiteDatabase db;
     private Usuario usuario;
-
+    Boolean vali=true;
     public UsuarioDao(Context context)
     {
         connection = new DBConnection(context);
@@ -24,7 +24,9 @@ public class UsuarioDao implements Crud {
 
     @Override
     public Boolean Crear(Object item) {
+
         try {
+            vali=true;
             usuario = (Usuario) item;
             db = connection.getWritableDatabase();
             ContentValues cv = new ContentValues();
@@ -35,47 +37,23 @@ public class UsuarioDao implements Crud {
             cv.put(Usuario.nomtelefono, usuario.getTelefono());
             cv.put(Usuario.nomclave, usuario.getClave());
             cv.put(Usuario.nomstatus, usuario.getStatus());
-
+   if (usuario.getId()==null )
             db.insert(Usuario.nomtableUsuario, null, cv);
 
+      else
+       db.update(Usuario.nomtableUsuario,  cv,Usuario.nomid+"=?",new String[] {""+usuario.getId()+""} );
+
         }
+
         catch (Exception e)
         {
             e.printStackTrace();
-            return false;
+            vali= false;
         }
         finally {
            // db.close();
         }
-        return true;
-    }
-
-    @Override
-    public Boolean Actualizar(Object item) {
-        try {
-            usuario = (Usuario) item;
-            db = connection.getWritableDatabase();
-            ContentValues cv = new ContentValues();
-            cv.put(Usuario.nomnombre, usuario.getNombre());
-            cv.put(Usuario.nomtipousuario, String.valueOf(usuario.getTipousuario()));
-            cv.put(Usuario.nomidentificacion, usuario.getIdentificacion());
-            cv.put(Usuario.nomemail, usuario.getEmail());
-            cv.put(Usuario.nomtelefono, usuario.getTelefono());
-            cv.put(Usuario.nomclave, usuario.getClave());
-            cv.put(Usuario.nomstatus, usuario.getStatus());
-         //   db.beginTransaction();
-            db.update(Usuario.nomtableUsuario,  cv,Usuario.nomid+"=?",new String[] {""+usuario.getId()+""} );
-        //    db.endTransaction();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-        finally {
-            //db.close();
-        }
-        return true;
+        return vali;
     }
 
     @Override
@@ -98,19 +76,21 @@ public class UsuarioDao implements Crud {
     }
 
     @Override
-    public List<?> Listar()   {
+    public List<Usuario> Listar()   {
         List<Usuario> usuarioslista= new ArrayList<>();
         db = connection.getReadableDatabase();
-        String columnas[] = new String[]{Usuario.nomid, Usuario.nomnombre, Usuario.nomemail, Usuario.nomtelefono};
-        Cursor cursor = db.query(Usuario.nomtableUsuario, columnas, null, null, null, null, null);
+        String columnas[] = new String[]{Usuario.nomid, Usuario.nomnombre,Usuario.nomidentificacion, Usuario.nomemail, Usuario.nomtelefono};
+        Cursor cursor = db.query(Usuario.nomtableUsuario, columnas, null, null, null, null, Usuario.nomid+" DESC");
         usuarioslista=null;
             try
             {
                 if (cursor.moveToFirst()) {
+                    usuarioslista=new ArrayList<>();
                     while (!cursor.isAfterLast()) {
                         usuario = new Usuario();
                         usuario.setId(cursor.getInt(cursor.getColumnIndex(Usuario.nomid)));
                         usuario.setNombre(cursor.getString(cursor.getColumnIndex(Usuario.nomnombre)));
+                        usuario.setIdentificacion(cursor.getString(cursor.getColumnIndex(Usuario.nomidentificacion)));
                         // u.setTipousuario(TipoUsuario.valueOf( cursor.getString(cursor.getColumnIndex("tipousuario"))));
                         usuario.setEmail(cursor.getString(cursor.getColumnIndex(Usuario.nomemail)));
                         usuario.setTelefono(cursor.getString(cursor.getColumnIndex(Usuario.nomtelefono)));

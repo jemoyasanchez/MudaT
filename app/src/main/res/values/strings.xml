@@ -8,11 +8,39 @@
 
     <string name="Nombreusuario">Nombre de Usuario</string>
     <string name="Identificacion">Indentificación</string>
-    <string name="Email">Correo Electronico</string>
+    <string name="Email">Email</string>
     <string name="Telefono">Teléfono</string>
     <string name="Contrasena">Contraseña</string>
     <string name="rRepetircontrasena">Repetir Contraseña</string>
     <string name="Registrar">Registrar</string>
-    <item name="visible" type="id"/>
-    <item name="masked" type="id"/>
+    <string name="Categoria">Categoria</string>
+    <string name="Nuevo">Nuevo</string>
+    <string name="Guardar">Guardar</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="Lista">Lista</string>
+    <string name="Anuncios">Anuncios</string>
+    <string name="RegistrodeUsuario">Registro de Usuario</string>
+    <item name="visible" type="id" />
+    <item name="masked" type="id" />
+    <string name="title_activity_menu_principal">MenuPrincipal</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="salir">Salir</string>
+    <string name="crearusuario">Crear Usuario</string>
+    <string name="iniciarsesion">Iniciar Sesión</string>
+    <string name="Listausuario">Lista de Usuarios</string>
+    <string name="Publicaciones">Publicaciones</string>
+    <string name="mipublicaciones">Mis Publicaciones</string>
+    <string name="Titulo">Título</string>
+    <string name="detalle">Detalle</string>
+    <string name="Ubicación">Ubicación</string>
+    <string name="precio">Precio</string>
+    <string name="condicion">Condición</string>
+    <string name="contacto">Contacto</string>
+    <string name="crearanuncio">Crear Anuncio</string>
+    <string name="contrasenaanterior">Contraseña Anterior</string>
+
 </resources>

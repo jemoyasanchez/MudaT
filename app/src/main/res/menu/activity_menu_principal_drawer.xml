@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_publicaciones"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/Publicaciones" />
+        <item
+            android:id="@+id/nav_mispublicaciones"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/mipublicaciones" />
+        <item
+            android:id="@+id/nav_listausuario"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/Listausuario" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_iniciarsesion"
+                android:icon="@drawable/ic_login"
+                android:title="@string/iniciarsesion" />
+            <item
+                android:id="@+id/nav_crearusuario"
+                android:icon="@drawable/ic_crearcuenta"
+                android:title="@string/crearusuario" />
+
+            <item
+                android:id="@+id/nav_salir"
+                android:icon="@drawable/ic_closeapp"
+                android:title="@string/salir" />
+        </menu>
+    </item>
+
+</menu>

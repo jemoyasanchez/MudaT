@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.itla.mudat.View.RegistroUsuario">
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimarydivider"
+        tools:ignore="ObsoleteLayoutParam" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorbarra"
+        android:text="@string/Categoria"
+        android:textAllCaps="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/negro"
+        android:textStyle="normal|bold" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimarydivider" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/negro"
+        android:textColorHint="@color/negro">
+
+        <EditText
+            android:id="@+id/TbnombreCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Categoria"
+            android:inputType="text"
+            android:textAllCaps="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/negro"
+            android:textColorHint="@color/negro"
+            android:textStyle="normal|bold"
+            tools:ignore="LabelFor" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/BTnuevoCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Nuevo"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="8dp"
+
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+
+            android:layout_weight="1"
+            android:background="#dd4b39"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="15"
+
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="normal|bold"  />
+
+        <Button
+            android:id="@+id/BTguardarCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Guardar"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="8dp"
+
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+
+            android:layout_weight="1"
+            android:background="#dd4b39"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="15"
+
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="normal|bold"  />
+
+        <Button
+            android:id="@+id/BTEliminarCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Eliminar"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="8dp"
+
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
+
+            android:layout_weight="1"
+            android:background="#dd4b39"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="15"
+
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="normal|bold"  />
+
+        <Button
+            android:id="@+id/idblistaCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+
+            android:background="#dd4b39"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="15"
+            android:text="@string/Lista"
+
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
+</LinearLayout>

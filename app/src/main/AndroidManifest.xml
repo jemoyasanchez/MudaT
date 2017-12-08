@@ -14,23 +14,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MenuPrincipal"
+            android:label="@string/title_activity_menu_principal"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewActivity" />
-
-        <activity android:name=".View.RegistroUsuario"
+        <activity
+            android:name=".View.RegistroUsuario"
             android:label="@string/Registrousuario"
-            android:parentActivityName="com.itla.mudat.MainActivity"
-            >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.itla.mudat.MainActivity"/>
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.itla.mudat.MainActivity" />
         </activity>
+        <activity android:name=".View.RegistroCategoria" />
+        <activity android:name=".View.ListaUsuario" />
+        <activity android:name=".View.RegistroAnuncio" />
+        <activity android:name=".View.Publicaciones" />
+        <activity android:name=".View.MyPublicaciones"></activity>
     </application>
 
 </manifest>

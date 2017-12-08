@@ -8,26 +8,22 @@
     android:orientation="vertical"
     tools:context="com.itla.mudat.MainActivity">
 
-    <EditText
-        android:id="@+id/TXTnombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:inputType="text"
-        android:labelFor="@id/BTNmostrar" />
-
-    <Button
-        android:id="@+id/BTNmostrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/Mostrar" />
-
     <Button
         android:id="@+id/Breigistrousu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Registrousuario" />
+
+    <Button
+        android:id="@+id/BAnuncios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Anuncios" />
+
+    <Button
+        android:id="@+id/BCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Categoria" />
 
 </LinearLayout>

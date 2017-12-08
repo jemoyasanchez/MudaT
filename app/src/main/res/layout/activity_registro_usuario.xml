@@ -85,6 +85,20 @@
                     android:layout_height="match_parent">
 
                     <EditText
+                        android:id="@+id/Txtclaveanterior"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/contrasenaanterior"
+                        android:inputType="text|textPassword"
+                        android:textAllCaps="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="normal|bold" />
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
                         android:id="@+id/Txtclave"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -148,6 +162,7 @@
                     android:id="@+id/Bregistousuariolistar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/Registrousuariolistar"
                     android:layout_gravity="center"
                     android:layout_marginBottom="2dp"
                     android:layout_marginLeft="8dp"
@@ -162,7 +177,7 @@
                     android:shadowDx="3"
                     android:shadowDy="3"
                     android:shadowRadius="15"
-                    android:text="@string/Registrousuariolistar"
+
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textAppearance="?android:attr/textAppearanceSmall"

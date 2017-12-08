@@ -1,6 +1,8 @@
 package com.itla.mudat.Entity;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable{
 
  public static final String nomtableUsuario="Usuario";
  public static final String nomid="id";

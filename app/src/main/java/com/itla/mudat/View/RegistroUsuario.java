@@ -1,99 +1,180 @@
 package com.itla.mudat.View;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.itla.mudat.Dao.UsuarioDao;
+import com.itla.mudat.Entity.TipoUsuario;
 import com.itla.mudat.Entity.Usuario;
 import com.itla.mudat.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class RegistroUsuario extends AppCompatActivity {
+public class RegistroUsuario extends Fragment implements  View.OnClickListener  {
     private EditText Editnombreusuario;
     private EditText Editidentificacion;
     private EditText Edittelefono;
     private EditText Editcorreoelectronico;
     private EditText Editcontrasena;
     private EditText Editrepetirccontrasena;
+    private EditText Editcontrasenaanterior;
     private Button Bregistrar;
     private Button Blistarusuarios;
     private Usuario usuario;
     private UsuarioDao UsuarioDao;
     private static final String LOG_T="RegistroUsuario";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_registro_usuario);
+    @Nullable
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.activity_registro_usuario,container,false);
 
-        Editnombreusuario=(EditText) findViewById(R.id.Txtnombreusuario);
-        Editidentificacion=(EditText) findViewById(R.id.Txtidentificacion);
-        Edittelefono=(EditText) findViewById(R.id.Txttelefono);
-        Editcorreoelectronico=(EditText) findViewById(R.id.Txtemail);
-        Editcontrasena=(EditText) findViewById(R.id.Txtclave);
-        Editrepetirccontrasena=(EditText) findViewById(R.id.Txtclaverepetir);
-        Bregistrar=(Button) findViewById(R.id.Bregistousuario);
-        Blistarusuarios=(Button) findViewById(R.id.Bregistousuariolistar);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        Editnombreusuario=(EditText) v.findViewById(R.id.Txtnombreusuario);
+        Editidentificacion=(EditText) v.findViewById(R.id.Txtidentificacion);
+        Edittelefono=(EditText) v.findViewById(R.id.Txttelefono);
+        Editcorreoelectronico=(EditText) v.findViewById(R.id.Txtemail);
+        Editcontrasena=(EditText) v.findViewById(R.id.Txtclave);
+        Editrepetirccontrasena=(EditText) v.findViewById(R.id.Txtclaverepetir);
+        Editcontrasenaanterior=(EditText) v.findViewById(R.id.Txtclaveanterior);
+        Bregistrar=(Button) v.findViewById(R.id.Bregistousuario);
+        Bregistrar.setOnClickListener(this);
+        Blistarusuarios=(Button)  v.findViewById(R.id.Bregistousuariolistar);
+        Blistarusuarios.setOnClickListener(this);
         Nuevo();
 
+        return v;
 
-        Bregistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle parametros = getArguments();
+        if (parametros!=null && parametros.getSerializable(Usuario.nomtableUsuario)!=null){
+            usuario=(Usuario) parametros.getSerializable(Usuario.nomtableUsuario);
+            Editnombreusuario.setText(usuario.getNombre());
+            Editidentificacion.setText(usuario.getIdentificacion());
+            Edittelefono.setText(usuario.getTelefono());
+            Editcorreoelectronico.setText(usuario.getEmail());
+            Blistarusuarios.setVisibility(View.VISIBLE);
+            Editcontrasenaanterior.setVisibility(View.VISIBLE);
+        }
+        else {
+            usuario=new Usuario();
+            Blistarusuarios.setVisibility(View.GONE);
+            Editcontrasenaanterior.setVisibility(View.GONE);
+        }
+    }
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.Bregistousuario:
                 try {
 
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("Aviso");
+                    builder.setMessage("Desea Registrar el Usuario?");
+                    builder.setIcon(R.drawable.ic_guardar);
 
-                    UsuarioDao = new UsuarioDao(getApplicationContext());
+                    builder.setPositiveButton("GUARDAR", new DialogInterface.OnClickListener()
+                    {
 
-                    usuario.setNombre(Editnombreusuario.getText().toString());
-                    usuario.setIdentificacion(Editidentificacion.getText().toString());
-                    usuario.setTelefono(Edittelefono.getText().toString());
-                    usuario.setEmail(Editcorreoelectronico.getText().toString());
-                    usuario.setClave(Editcontrasena.getText().toString());
-                    usuario.setStatus(true);
+                        @Override
+                        public void onClick(DialogInterface dialog, int whichButton)
+                        {
+                            if (validar()) {
+                                UsuarioDao = new UsuarioDao(getActivity());
+
+                                usuario.setNombre(Editnombreusuario.getText().toString());
+                                usuario.setIdentificacion(Editidentificacion.getText().toString());
+                                usuario.setTelefono(Edittelefono.getText().toString());
+                                usuario.setTipousuario(TipoUsuario.CLIENTE);
+                                usuario.setEmail(Editcorreoelectronico.getText().toString());
+                                usuario.setClave(Editcontrasena.getText().toString());
+                                usuario.setStatus(true);
 
 
-                    Log.i(LOG_T, "Registrando Usuario " + usuario.toString());
-                    UsuarioDao.Crear(usuario);
+                                Log.i(LOG_T, "Registrando Usuario " + usuario.toString());
+
+                                if (UsuarioDao.Crear(usuario)) {
+                                    toast("Usuario Registrado Exitosamente.");
+                                    Nuevo();
+                                    try {
+                                        ListaUsuario fragment1 = new ListaUsuario();
+                                        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameloy, fragment1);
+                                        fragmentTransaction.commit();
+                                    }catch (Exception e){e.printStackTrace();}
+                                } else {
+                                    toast("Usuario no se  Registrado Exitosamente.");
+                                }
+                            }
+                            else
+                            {
+                                toast("Debes Completar los datos faltantes.");
+                            }
+
+                        }
+                    });
+
+                    builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener()
+                    {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                           return;
+                        }
+                    });
+
+                    builder.show();
+
                 }catch (Exception e)
                 {
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
-                Nuevo();
-            }
-        });
-Blistarusuarios.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-//        try {
-//            UsuarioDao = new UsuarioDao(getApplicationContext());
-//            List<Usuario> listausu =new ArrayList<Usuario>();
-//            listausu=(List<Usuario> ) UsuarioDao.Listar();
-//            if (listausu!=null) {
-//                for (Usuario usu : listausu) {
-//                    Toast.makeText(getApplicationContext(), usu.toString(), Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        }catch (Exception e)
-//        {
-//            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-//        }
-    }
-});
+                break;
+            case R.id.Bregistousuariolistar:
+                try
+                {
+                    ListaUsuario fragment1 = new ListaUsuario();
+                    android.support.v4.app.FragmentTransaction fragmentTransaction =getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.frameloy,fragment1);
+                    fragmentTransaction.commit();
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(getActivity(),  e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                break;
+        }
 
     }
+
 
     private void Nuevo()
     {
@@ -113,7 +194,7 @@ Blistarusuarios.setOnClickListener(new View.OnClickListener() {
         if(TextUtils.isEmpty( Editnombreusuario.getText()))
         {
             Editnombreusuario.setError("Ej: Juan Perez");
-            Toast.makeText(RegistroUsuario.this,"Debe Registrar el nombre de Usuario.",Toast.LENGTH_LONG).show();
+            toast("Debe Registrar el nombre de Usuario.");
             Valvali=false;
         }
         else
@@ -124,7 +205,7 @@ Blistarusuarios.setOnClickListener(new View.OnClickListener() {
         if(TextUtils.isEmpty( Editidentificacion.getText()))
         {
             Editidentificacion.setError("Ej. 09903-34443-3444");
-            Toast.makeText(RegistroUsuario.this,"Debe Registrar la Identificacion.",Toast.LENGTH_LONG).show();
+            toast("Debe Registrar la Identificacion.");
             Valvali=false;
         }
         else
@@ -135,7 +216,7 @@ Blistarusuarios.setOnClickListener(new View.OnClickListener() {
         if(TextUtils.isEmpty( Edittelefono.getText()))
         {
             Edittelefono.setError("Ej: 829-528-5446");
-            Toast.makeText(RegistroUsuario.this,"Debe Registrar el Nùmero Telefonico.",Toast.LENGTH_LONG).show();
+            toast("Debe Registrar el Nùmero Telefonico.");
             Valvali=false;
         }
         else
@@ -146,7 +227,7 @@ Blistarusuarios.setOnClickListener(new View.OnClickListener() {
         if(TextUtils.isEmpty( Editcorreoelectronico.getText()))
         {
             Editcorreoelectronico.setError("Ej: JuanPerez@Itla.com");
-            Toast.makeText(RegistroUsuario.this,"Debe Registrar el Correo Electronico.",Toast.LENGTH_LONG).show();
+            toast("Debe Registrar el Correo Electronico.");
             Valvali=false;
         }
         else
@@ -157,7 +238,7 @@ Blistarusuarios.setOnClickListener(new View.OnClickListener() {
         if(TextUtils.isEmpty( Editcontrasena.getText()))
         {
             Editcontrasena.setError("Ej: **********");
-            Toast.makeText(RegistroUsuario.this,"Debe Registrar la Contraseña.",Toast.LENGTH_LONG).show();
+            toast("Debe Registrar la Contraseña.");
             Valvali=false;
         }
         else
@@ -168,7 +249,7 @@ Blistarusuarios.setOnClickListener(new View.OnClickListener() {
         if(TextUtils.isEmpty( Editrepetirccontrasena.getText()))
         {
             Editrepetirccontrasena.setError("Ej: *****");
-            Toast.makeText(RegistroUsuario.this,"Debe Registrar Repetir la Contraseña.",Toast.LENGTH_LONG).show();
+            toast("Debe Registrar Repetir la Contraseña.");
             Valvali=false;
         }
         else
@@ -176,11 +257,11 @@ Blistarusuarios.setOnClickListener(new View.OnClickListener() {
             Editrepetirccontrasena.setError(null);
         }
 
-        if(Editcontrasena.getText().toString().trim()!=Editrepetirccontrasena.getText().toString().trim())
+        if(!Editcontrasena.getText().toString().trim().equals(   Editrepetirccontrasena.getText().toString().trim()))
         {
             Editrepetirccontrasena.setError("Ej: *****");
             Editcontrasena.setError("Ej: **********");
-            Toast.makeText(RegistroUsuario.this,"La Contraseña no Coinciden.",Toast.LENGTH_LONG).show();
+            toast(" Contraseña no Coinciden.");
             Valvali=false;
         }
         else
@@ -190,6 +271,17 @@ Blistarusuarios.setOnClickListener(new View.OnClickListener() {
         }
 
         return  Valvali;
+    }
+
+    private void toast(final String text) {
+
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity().getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

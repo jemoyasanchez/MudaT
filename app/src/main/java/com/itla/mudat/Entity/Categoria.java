@@ -1,8 +1,8 @@
 package com.itla.mudat.Entity;
 
 
-public enum Categoria {
-NACIONAL,INTERNACIONAL;
+public class Categoria {
+
 
     public static final String nomtableCategoria="Categoria";
     public static final String nomid="id";

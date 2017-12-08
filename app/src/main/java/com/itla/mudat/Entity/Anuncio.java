@@ -1,8 +1,6 @@
 package com.itla.mudat.Entity;
 
 
-import java.util.Date;
-
 public class Anuncio {
 
     public static final String nomtableanuncio="Anuncio";
@@ -18,14 +16,15 @@ public class Anuncio {
 
 
     private Integer id;
-    private Categoria categoria;
-    private Usuario usuario;
-    private Date fecha;
+    private Integer categoria;
+    private Integer usuario;
+    private String fecha;
     private String condicion;
     private Double precio;
     private String titulo;
     private String ubicacion;
     private String detalle;
+
 
     public Integer getId() {
         return id;
@@ -35,27 +34,27 @@ public class Anuncio {
         this.id = id;
     }
 
-    public Categoria getCategoria() {
+    public Integer getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(Integer categoria) {
         this.categoria = categoria;
     }
 
-    public Usuario getUsuario() {
+    public Integer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Integer usuario) {
         this.usuario = usuario;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -97,5 +96,20 @@ public class Anuncio {
 
     public void setDetalle(String detalle) {
         this.detalle = detalle;
+    }
+
+    @Override
+    public String toString() {
+        return "Anuncio{" +
+                "id=" + id +
+                ", categoria=" + categoria +
+                ", usuario=" + usuario +
+                ", fecha='" + fecha + '\'' +
+                ", condicion='" + condicion + '\'' +
+                ", precio=" + precio +
+                ", titulo='" + titulo + '\'' +
+                ", ubicacion='" + ubicacion + '\'' +
+                ", detalle='" + detalle + '\'' +
+                '}';
     }
 }

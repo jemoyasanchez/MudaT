@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MudaT.iml" filepath="$PROJECT_DIR$/MudaT.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/itla.iml" filepath="$PROJECT_DIR$/itla.iml" />
+      <module fileurl="file://C:\Users\moyas\Documents\ProyectosAndroid\MudaT\itla.iml" filepath="C:\Users\moyas\Documents\ProyectosAndroid\MudaT\itla.iml" />
     </modules>
   </component>
 </project>
