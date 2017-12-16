@@ -17,7 +17,7 @@ public class Usuario implements Serializable{
 
  private Integer id;
  private String nombre;
- private TipoUsuario tipousuario;
+ private Integer tipousuario;
  private String identificacion;
  private String email;
  private String telefono;
@@ -40,11 +40,11 @@ public class Usuario implements Serializable{
   this.nombre = nombre;
  }
 
- public TipoUsuario getTipousuario() {
+ public Integer getTipousuario() {
   return tipousuario;
  }
 
- public void setTipousuario(TipoUsuario tipousuario) {
+ public void setTipousuario(Integer tipousuario) {
   this.tipousuario = tipousuario;
  }
 

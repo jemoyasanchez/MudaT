@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.itla.mudat.PerfilDeUsuario" android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_overlayback"
+                android:text="@string/perfilusuario"
+                android:textAlignment="center"
+                android:textColor="@color/negro"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/ic_client" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/idperfilnombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_face_black_24dp"
+                android:text="@string/Nombreusuario"
+                android:textColor="@color/negro"
+                android:textColorHint="@color/colorhint"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/idperfilemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email_black_24dp"
+                android:text="@string/Email"
+                android:textColor="@color/negro"
+                android:textColorHint="@color/colorhint"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/idperfiltelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_settings_phone_black_24dp"
+                android:text="@string/Telefono"
+                android:textColor="@color/negro"
+                android:textColorHint="@color/colorhint"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/idperfilidentificacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_credit_card_black_24dp"
+                android:text="@string/Identificacion"
+                android:textColor="@color/negro"
+                android:textColorHint="@color/colorhint"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/idperfiltipocliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_perm_identity_black_24dp"
+                android:text="@string/tipousuario"
+
+                android:textColor="@color/negro"
+                android:textColorHint="@color/colorhint"
+                android:textStyle="normal|bold" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/Bperfileditarusuario"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+
+
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="#dd4b39"
+                android:text="@string/editarperfil"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="normal|bold" />
+
+            <Button
+                android:id="@+id/Bperfilusuariiregistroanuncio"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+
+
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="#dd4b39"
+                android:text="@string/crearanuncio"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black_overlayback"
+            android:text="@string/listadepublicaciones"
+            android:textAlignment="center"
+            android:textColor="@color/negro"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/listviewperfildeusuario"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

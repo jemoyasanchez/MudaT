@@ -1,5 +1,6 @@
 package com.itla.mudat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,14 +13,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.itla.mudat.ClasesConsta.ClaseConstante;
+import com.itla.mudat.Dao.ConstanteDao;
+import com.itla.mudat.Entity.Constante;
+import com.itla.mudat.Entity.Usuario;
 import com.itla.mudat.View.ListaUsuario;
-import com.itla.mudat.View.MyPublicaciones;
 import com.itla.mudat.View.Publicaciones;
-import com.itla.mudat.View.RegistroUsuario;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +51,17 @@ public class MenuPrincipal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        try{
+        cargadatos();
+        try {
             Publicaciones fragment1 = new Publicaciones();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frameloy,fragment1);
+            fragmentTransaction.replace(R.id.frameloy, fragment1);
             fragmentTransaction.commit();
             getSupportActionBar().setTitle("PUBLICACIONES");
 
-        }catch (Exception e){e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -92,23 +102,30 @@ public class MenuPrincipal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id==R.id.nav_mispublicaciones)
-        {
-try {
-    MyPublicaciones fragment1 = new MyPublicaciones();
-    android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-    fragmentTransaction.replace(R.id.frameloy, fragment1);
-    fragmentTransaction.commit();
-}catch (Exception e){e.printStackTrace();}
-        }
-       else if (id == R.id.nav_publicaciones) {
-       try{
-            Publicaciones fragment1 = new Publicaciones();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frameloy,fragment1);
-            fragmentTransaction.commit();
-            getSupportActionBar().setTitle("PUBLICACIONES");
-        }catch (Exception e){e.printStackTrace();}
+        if (id == R.id.nav_mispublicaciones) {
+            try {
+
+                PerfilDeUsuario fragment1 = new PerfilDeUsuario();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frameloy, fragment1);
+                Bundle args = new Bundle();
+                args.putSerializable(Usuario.nomtableUsuario, ClaseConstante.getUsuario());
+                args.putString("nuevo", "menuprincipal");
+                fragment1.setArguments(args);
+                fragmentTransaction.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (id == R.id.nav_publicaciones) {
+            try {
+                Publicaciones fragment1 = new Publicaciones();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frameloy, fragment1);
+                fragmentTransaction.commit();
+                getSupportActionBar().setTitle("PUBLICACIONES");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (id == R.id.nav_listausuario) {
             try {
                 ListaUsuario fragment1 = new ListaUsuario();
@@ -116,34 +133,74 @@ try {
                 fragmentTransaction.replace(R.id.frameloy, fragment1);
                 fragmentTransaction.commit();
                 getSupportActionBar().setTitle("LISTA DE USUARIOS");
-            }catch (Exception e){e.printStackTrace();}
-        }  else if (id == R.id.nav_iniciarsesion) {
-
-        } else if (id == R.id.nav_crearusuario) {
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (id == R.id.nav_salir) {
             try {
-                RegistroUsuario fragment1 = new RegistroUsuario();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frameloy, fragment1);
-                fragmentTransaction.commit();
+                Constante constante = new Constante();
+                ConstanteDao constanteDao = new ConstanteDao(getApplicationContext());
+                constante.setIp(1);
+                constante.setId(0);
+                if (constanteDao.Crear(constante)) {
+                    Intent ventana12 = new Intent(MenuPrincipal.this, SplashActivityInic.class);
+                    ventana12.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                getSupportActionBar().setTitle("REGISTRO DE USUARIO");
-            }catch ( Exception e){e.printStackTrace();}
-        }
-        else if (id == R.id.nav_salir) {
+                    startActivity(ventana12);
 
-        }
-        else
-        {
+                } else {
+                    Toast.makeText(MenuPrincipal.this, "No se pudo cerrar sesión", Toast.LENGTH_LONG).show();
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
             try {
                 Publicaciones fragment1 = new Publicaciones();
                 android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frameloy, fragment1);
                 fragmentTransaction.commit();
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void cargadatos() {
+        try {
+            usuario = new Usuario();
+            usuario = ClaseConstante.getUsuario();
+            if (usuario != null) {
+                try {
+                    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                    if (navigationView != null) {
+                        navigationView.setNavigationItemSelectedListener(this);
+                    }
+                    View navHeaderView = navigationView.getHeaderView(0);
+
+                    TextView headerUserName = (TextView) navHeaderView.findViewById(R.id.username);
+                    TextView headerMobileNo = (TextView) navHeaderView.findViewById(R.id.email);
+
+
+                    headerMobileNo.setText(usuario.getNombre());
+                    headerUserName.setText(usuario.getEmail());
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

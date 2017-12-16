@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.itla.mudat.Entity.Anuncio;
 import com.itla.mudat.Entity.Constante;
 
 import java.util.ArrayList;
@@ -28,19 +29,9 @@ public class ConstanteDao implements Crud {
             vali=true;
             constante = (Constante) item;
             db = connection.getWritableDatabase();
-            ContentValues cv = new ContentValues();
-            cv.put(Constante.nomid, constante.getId());
-
-            if (constante.getId()==null )
-                db.insert(Constante.nomtableConstante, null, cv);
-
-            else
-                db.update(Constante.nomtableConstante,  cv,Constante.nomid+"=?",new String[] {""+constante.getId()+""} );
-
+            db.execSQL("INSERT or replace INTO "+ Constante.nomtableConstante+" ("+Constante.nomip+","+  Constante.nomid+") values(1,"+String.valueOf(constante.getId())+");");
         }
-
-        catch (Exception e)
-        {
+        catch (Exception e){
             e.printStackTrace();
             vali= false;
         }
@@ -56,7 +47,7 @@ public class ConstanteDao implements Crud {
         {
             constante = (Constante) item;
             db = connection.getWritableDatabase();
-            db.delete(Constante.nomtableConstante, Constante.nomid+"=?",new String[] {""+constante.getId()+""});
+            db.delete(Constante.nomtableConstante, Constante.nomip+"=?",new String[] {"1"});
         }
         catch (Exception e)
         {
@@ -73,7 +64,7 @@ public class ConstanteDao implements Crud {
     public List<Constante> Listar()   {
         List<Constante> constantelista= new ArrayList<>();
         db = connection.getReadableDatabase();
-        String columnas[] = new String[]{Constante.nomid};
+        String columnas[] = new String[]{Constante.nomip,Constante.nomid};
         Cursor cursor = db.query(Constante.nomtableConstante, columnas, null, null, null, null, null);
         constantelista=null;
         try
@@ -82,6 +73,7 @@ public class ConstanteDao implements Crud {
                 constantelista=new ArrayList<>();
                 while (!cursor.isAfterLast()) {
                     constante = new Constante();
+                    constante.setIp(cursor.getInt(cursor.getColumnIndex(Constante.nomip)));
                     constante.setId(cursor.getInt(cursor.getColumnIndex(Constante.nomid)));
 
                     constantelista.add(constante);
@@ -99,8 +91,8 @@ public class ConstanteDao implements Crud {
     @Override
     public Object Buscar(int item) {
         db =  connection.getReadableDatabase();
-        String where = Constante.nomid + " = ?";
-        String[] whereArgs = {""+item+""};
+        String where = Constante.nomip + " = ?";
+        String[] whereArgs = {"1"};
         String columnas[] = new String[]{Constante.nomid};
         Cursor cursor = db.query(Constante.nomtableConstante, columnas, where, whereArgs, null, null, null);
 

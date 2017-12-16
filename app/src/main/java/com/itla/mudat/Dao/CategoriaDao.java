@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.itla.mudat.Entity.Categoria;
 
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,16 +75,15 @@ public class CategoriaDao implements Crud {
     }
 
     @Override
-    public List<Categoria> Listar()   {
-        List<Categoria> categoriaslista= new ArrayList<>();
+    public List<Categoria> Listar() {
+        List<Categoria> categoriaslista = new ArrayList<>();
         db = connection.getReadableDatabase();
         String columnas[] = new String[]{Categoria.nomid, Categoria.nomnombre};
         Cursor cursor = db.query(Categoria.nomtableCategoria, columnas, null, null, null, null, null);
-        categoriaslista=null;
-        try
-        {
+        categoriaslista = null;
+        try {
             if (cursor.moveToFirst()) {
-                categoriaslista=new ArrayList<>();
+                categoriaslista = new ArrayList<>();
                 while (!cursor.isAfterLast()) {
                     categoria = new Categoria();
                     categoria.setId(cursor.getInt(cursor.getColumnIndex(Categoria.nomid)));
@@ -100,7 +100,6 @@ public class CategoriaDao implements Crud {
         }
         return categoriaslista;
     }
-
     @Override
     public Object Buscar(int item) {
         db =  connection.getReadableDatabase();

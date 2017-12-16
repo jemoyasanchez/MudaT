@@ -10,30 +10,27 @@
             android:title="@string/Publicaciones" />
         <item
             android:id="@+id/nav_mispublicaciones"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/mipublicaciones" />
+            android:icon="@drawable/ic_perm_identity_black_24dp"
+            android:title="@string/miperfil" />
         <item
             android:id="@+id/nav_listausuario"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
             android:title="@string/Listausuario" />
+        <item
+            android:id="@+id/nav_megustagusta"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/megusta" />
+
 
     </group>
 
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_iniciarsesion"
-                android:icon="@drawable/ic_login"
-                android:title="@string/iniciarsesion" />
-            <item
-                android:id="@+id/nav_crearusuario"
-                android:icon="@drawable/ic_crearcuenta"
-                android:title="@string/crearusuario" />
 
             <item
                 android:id="@+id/nav_salir"
-                android:icon="@drawable/ic_closeapp"
-                android:title="@string/salir" />
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:title="@string/cerrarsesion" />
         </menu>
     </item>
 

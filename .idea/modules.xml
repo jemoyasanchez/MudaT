@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MudaT.iml" filepath="$PROJECT_DIR$/MudaT.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\moyas\Documents\ProyectosAndroid\MudaT\itla.iml" filepath="C:\Users\moyas\Documents\ProyectosAndroid\MudaT\itla.iml" />
     </modules>
   </component>
 </project>

@@ -14,19 +14,23 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.itla.mudat.ClasesConsta.ClaseConstante;
 import com.itla.mudat.Dao.UsuarioDao;
 import com.itla.mudat.Entity.Usuario;
+
 import com.itla.mudat.ListAdapter.UsuarioListAdapter;
 import com.itla.mudat.MenuPrincipal;
+import com.itla.mudat.PerfilDeUsuario;
 import com.itla.mudat.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class ListaUsuario extends Fragment implements  View.OnClickListener {
-private Button Bresgtrousuario;
+public class ListaUsuario extends Fragment   {
 private ListView listView;
 
     @Nullable
@@ -36,35 +40,35 @@ private ListView listView;
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         try {
-            Bresgtrousuario = (Button) v.findViewById(R.id.BregistrodeUsu);
-            Bresgtrousuario.setOnClickListener(this);
-            listView = (ListView) v.findViewById(R.id.LWlistausuarios);
+                        listView = (ListView) v.findViewById(R.id.LWlistausuarios);
 
-            UsuarioDao usuarioDao = new UsuarioDao(getActivity());
 
-            List<Usuario> usuariosl = new ArrayList<>();
-            usuariosl = (List<Usuario>) usuarioDao.Listar();
-            if (usuariosl != null) {
-                listView.setAdapter(new UsuarioListAdapter(usuariosl, getActivity()));
-            } else {
-                listView.setAdapter(null);
+
+            try {
+                UsuarioDao usuarioDao = new UsuarioDao(getActivity());
+
+                List<Usuario> usuariosl = new ArrayList<>();
+                usuariosl = (List<Usuario>) usuarioDao.Listar();
+                if (usuariosl != null) {
+                    listView.setAdapter(new UsuarioListAdapter(usuariosl, getActivity()));
+                } else {
+                    listView.setAdapter(null);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                     Usuario u = (Usuario) adapterView.getItemAtPosition(position);
-                    RegistroUsuario fragment1 = new RegistroUsuario();
-                    android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    PerfilDeUsuario fragment1 = new PerfilDeUsuario();
+                    android.support.v4.app.FragmentTransaction fragmentTransaction =getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.frameloy, fragment1);
                     Bundle args = new Bundle();
                     args.putSerializable(Usuario.nomtableUsuario, u);
+                    args.putString("nuevo", "listausuario");
                     fragment1.setArguments(args);
-                    fragmentTransaction.replace(R.id.frameloy, fragment1);
                     fragmentTransaction.commit();
-
-//                Intent rUsuario=new Intent(ListaUsuario.this,RegistroUsuario.class);
-//
-//                rUsuario.putExtra(Usuario.nomtableUsuario,u);
-//                startActivity(rUsuario);
                 }
             });
         }catch (Exception e){e.printStackTrace();}
@@ -72,26 +76,7 @@ private ListView listView;
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.BregistrodeUsu:
-                try {
 
-                    RegistroUsuario fragment1 = new RegistroUsuario();
-                    android.support.v4.app.FragmentTransaction fragmentTransaction =getActivity(). getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.frameloy,fragment1);
-                    fragmentTransaction.commit();
-
-
-                }catch (Exception e){e.printStackTrace();}
-
-                break;
-
-            default:
-                break;
-        }
-    }
 
 
 //    @Override

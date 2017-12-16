@@ -2,34 +2,36 @@ package com.itla.mudat.View;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TextureView;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TabHost;
+
+import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.itla.mudat.ContenidoIniciar;
 import com.itla.mudat.Dao.UsuarioDao;
 import com.itla.mudat.Entity.TipoUsuario;
 import com.itla.mudat.Entity.Usuario;
+import com.itla.mudat.IniciarSesionInic;
+import com.itla.mudat.PerfilDeUsuario;
 import com.itla.mudat.R;
+import com.itla.mudat.SplashActivityInic;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.io.RandomAccessFile;
+
 
 public class RegistroUsuario extends Fragment implements  View.OnClickListener  {
     private EditText Editnombreusuario;
@@ -40,11 +42,13 @@ public class RegistroUsuario extends Fragment implements  View.OnClickListener  
     private EditText Editrepetirccontrasena;
     private EditText Editcontrasenaanterior;
     private Button Bregistrar;
-    private Button Blistarusuarios;
+    private Button Bcancelar;
+    private RadioButton RBpublicador;
+    private RadioButton RBcliente;
     private Usuario usuario;
     private UsuarioDao UsuarioDao;
     private static final String LOG_T="RegistroUsuario";
-
+    private String iniclognuevo;
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_registro_usuario,container,false);
@@ -58,11 +62,14 @@ public class RegistroUsuario extends Fragment implements  View.OnClickListener  
         Editcontrasena=(EditText) v.findViewById(R.id.Txtclave);
         Editrepetirccontrasena=(EditText) v.findViewById(R.id.Txtclaverepetir);
         Editcontrasenaanterior=(EditText) v.findViewById(R.id.Txtclaveanterior);
+        RBpublicador=(RadioButton)v.findViewById(R.id.tbradiobuttonpublicador);
+        RBcliente=(RadioButton)v.findViewById(R.id.tbradiobuttonCliente);
         Bregistrar=(Button) v.findViewById(R.id.Bregistousuario);
         Bregistrar.setOnClickListener(this);
-        Blistarusuarios=(Button)  v.findViewById(R.id.Bregistousuariolistar);
-        Blistarusuarios.setOnClickListener(this);
-        Nuevo();
+        Bcancelar=(Button) v.findViewById(R.id.Bregistousuariocancelar);
+        Bcancelar.setOnClickListener(this);
+        RBcliente.setChecked(true);
+               Nuevo();
 
         return v;
 
@@ -78,13 +85,22 @@ public class RegistroUsuario extends Fragment implements  View.OnClickListener  
             Editidentificacion.setText(usuario.getIdentificacion());
             Edittelefono.setText(usuario.getTelefono());
             Editcorreoelectronico.setText(usuario.getEmail());
-            Blistarusuarios.setVisibility(View.VISIBLE);
+
             Editcontrasenaanterior.setVisibility(View.VISIBLE);
         }
         else {
             usuario=new Usuario();
-            Blistarusuarios.setVisibility(View.GONE);
+
             Editcontrasenaanterior.setVisibility(View.GONE);
+        }
+
+        if (parametros!=null && !TextUtils.isEmpty(parametros.getString("nuevo")))
+        {
+            iniclognuevo=parametros.getString("nuevo");
+        }
+        else
+        {
+            iniclognuevo= "nuevo";
         }
     }
     public void onClick(View v) {
@@ -110,7 +126,11 @@ public class RegistroUsuario extends Fragment implements  View.OnClickListener  
                                 usuario.setNombre(Editnombreusuario.getText().toString());
                                 usuario.setIdentificacion(Editidentificacion.getText().toString());
                                 usuario.setTelefono(Edittelefono.getText().toString());
-                                usuario.setTipousuario(TipoUsuario.CLIENTE);
+                                if(RBcliente.isChecked())
+                                usuario.setTipousuario(1);
+                                else
+                                    usuario.setTipousuario(2);
+
                                 usuario.setEmail(Editcorreoelectronico.getText().toString());
                                 usuario.setClave(Editcontrasena.getText().toString());
                                 usuario.setStatus(true);
@@ -122,11 +142,26 @@ public class RegistroUsuario extends Fragment implements  View.OnClickListener  
                                     toast("Usuario Registrado Exitosamente.");
                                     Nuevo();
                                     try {
-                                        ListaUsuario fragment1 = new ListaUsuario();
+                                    if (iniclognuevo.equals("login"))
+                                    {
+                                        ContenidoIniciar fragment1 = new ContenidoIniciar();
                                         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                        fragmentTransaction.replace(R.id.frameloy, fragment1);
+                                        fragmentTransaction.replace(R.id.idframnglayoutimg, fragment1);
                                         fragmentTransaction.commit();
-                                    }catch (Exception e){e.printStackTrace();}
+                                    }
+                                    else if(iniclognuevo.equals("perfilusuario"))
+                                    {
+                                        try {
+                                            PerfilDeUsuario fragment1 = new PerfilDeUsuario();
+                                            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.frameloy, fragment1);
+                                            fragmentTransaction.commit();
+                                        }catch (Exception e)
+                                        {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                   }catch (Exception e){e.printStackTrace();}
                                 } else {
                                     toast("Usuario no se  Registrado Exitosamente.");
                                 }
@@ -156,17 +191,31 @@ public class RegistroUsuario extends Fragment implements  View.OnClickListener  
                     Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.Bregistousuariolistar:
-                try
+            case R.id.Bregistousuariocancelar:
+
+                if (iniclognuevo.equals("login"))
                 {
-                    ListaUsuario fragment1 = new ListaUsuario();
-                    android.support.v4.app.FragmentTransaction fragmentTransaction =getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.frameloy,fragment1);
-                    fragmentTransaction.commit();
+                    try {
+                        ContenidoIniciar fragment1 = new ContenidoIniciar();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.idframnglayoutimg, fragment1);
+                        fragmentTransaction.commit();
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
-                catch (Exception e)
+                else if(iniclognuevo.equals("perfilusuario"))
                 {
-                    Toast.makeText(getActivity(),  e.getMessage(), Toast.LENGTH_LONG).show();
+                    try {
+                        PerfilDeUsuario fragment1 = new PerfilDeUsuario();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.frameloy, fragment1);
+                        fragmentTransaction.commit();
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             default:

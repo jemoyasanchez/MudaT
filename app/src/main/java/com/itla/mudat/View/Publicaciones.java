@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,18 +21,19 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import com.itla.mudat.Dao.AnuncioDao;
 import com.itla.mudat.Entity.Anuncio;
 import com.itla.mudat.ListAdapter.AnuncioListAdapter;
-import com.itla.mudat.ListAdapter.UsuarioListAdapter;
 import com.itla.mudat.R;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Publicaciones extends Fragment  {
     private static ListView listViewpublicacion;
@@ -52,17 +54,22 @@ public class Publicaciones extends Fragment  {
                     try {
                         try {
                             RegistroAnuncio fragment1 = new RegistroAnuncio();
-                            android.support.v4.app.FragmentTransaction fragmentTransaction =getActivity().getSupportFragmentManager().beginTransaction();
+                            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.frameloy, fragment1);
-                            fragmentTransaction.commit();
-                        }catch (Exception e){e.printStackTrace();}
+                            Bundle args = new Bundle();
 
+                            args.putSerializable(Anuncio.nomtableanuncio,null);
+                            args.putString("nuevo", "publicaciones");
+                            fragment1.setArguments(args);
+                            fragmentTransaction.commit();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     } catch (Exception e) {
                         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
 
         } catch (Exception e) {
             Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -71,10 +78,6 @@ public class Publicaciones extends Fragment  {
         return v;
 
     }
-
-
-  
-
 
 
     public static  void cargaranuncios(Activity activity)

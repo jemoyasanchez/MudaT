@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.itla.mudat.View.RegistroUsuario">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_overlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black_overlay"
+            android:backgroundTintMode="screen"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/Iniciarsesion"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/negro"
+                android:textColorHighlight="@color/black_overlay"
+                android:textColorHint="@color/colorhint"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:textColorHint="@color/colorhint">
+
+                    <EditText
+                        android:id="@+id/Txtloginnombreusuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Nombreusuario"
+                        android:inputType="text"
+                        android:textAllCaps="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/negro"
+                        android:textColorHint="@color/colorhint"
+                        android:textStyle="normal|bold" />
+                </android.support.design.widget.TextInputLayout>
+
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:hint="@string/Contrasena"
+                    android:textColorHint="@color/colorhint">
+
+                    <EditText
+                        android:id="@+id/Txtloginclave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text|textPassword"
+                        android:textAllCaps="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/negro"
+                        android:textStyle="normal|bold" />
+                </android.support.design.widget.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/CKmantenersesion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mantenerlasesioninciada" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/Biniciarusuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="8dp"
+                    android:drawableStart="@drawable/ic_perm_identity_black_24dp"
+
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="2dp"
+
+                    android:layout_weight="1"
+                    android:background="#dd4b39"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="15"
+                    android:text="@string/iniciarsesion"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal|bold" />
+
+                <Button
+                    android:id="@+id/Binicusuariocancelar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="8dp"
+                    android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="2dp"
+
+                    android:layout_weight="1"
+                    android:background="#dd4b39"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="15"
+                    android:text="@string/cancelar"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

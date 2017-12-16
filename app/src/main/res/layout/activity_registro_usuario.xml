@@ -4,17 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="top"
     android:orientation="vertical"
     tools:context="com.itla.mudat.View.RegistroUsuario">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/black_overlay">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:backgroundTint="@color/black_overlay"
+            android:backgroundTintMode="screen"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/Registrousuario"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/negro"
+                android:textColorHighlight="@color/black_overlay"
+                android:textColorHint="@color/colorhint"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -23,7 +41,9 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:textColorHint="@color/colorhint">
 
                     <EditText
                         android:id="@+id/Txtnombreusuario"
@@ -32,13 +52,67 @@
                         android:hint="@string/Nombreusuario"
                         android:inputType="text"
                         android:textAllCaps="true"
+                        android:drawableStart="@drawable/ic_face_black_24dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/negro"
+                        android:textColorHint="@color/colorhint"
                         android:textStyle="normal|bold" />
                 </android.support.design.widget.TextInputLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/tipousuario"
+                        android:textColor="@color/colorhint"
+                        android:textColorHint="@color/colorhint"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checkedButton="@+id/tbradiobuttonpublicador"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/tbradiobuttonCliente"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cliente"
+                            android:textColor="@color/negro"
+                            android:textColorHint="@color/colorhint"
+                            android:textSize="16sp"
+                            android:textStyle="normal" />
+
+                        <RadioButton
+                            android:id="@+id/tbradiobuttonpublicador"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/publicador"
+                            android:textColor="@color/negro"
+                            android:textColorHint="@color/colorhint"
+                            android:textSize="16sp"
+                            android:textStyle="normal" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:textColorHint="@color/colorhint">
 
                     <EditText
                         android:id="@+id/Txtidentificacion"
@@ -46,14 +120,19 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/Identificacion"
                         android:inputType="text"
+                        android:drawableStart="@drawable/ic_credit_card_black_24dp"
                         android:textAllCaps="true"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/negro"
+                        android:textColorHint="@color/colorhint"
                         android:textStyle="normal|bold" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:textColorHint="@color/colorhint">
 
                     <EditText
                         android:id="@+id/Txttelefono"
@@ -62,12 +141,18 @@
                         android:hint="@string/Telefono"
                         android:inputType="text"
                         android:textAllCaps="true"
+                        android:drawableStart="@drawable/ic_settings_phone_black_24dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/negro"
+                        android:textColorHint="@color/colorhint"
                         android:textStyle="normal|bold" />
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:textColorHint="@color/colorhint">
 
                     <EditText
                         android:id="@+id/Txtemail"
@@ -75,14 +160,19 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/Email"
                         android:inputType="textEmailAddress"
+                        android:drawableStart="@drawable/ic_email_black_24dp"
                         android:textAllCaps="true"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/negro"
+                        android:textColorHint="@color/colorhint"
                         android:textStyle="normal|bold" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:textColorHint="@color/colorhint">
 
                     <EditText
                         android:id="@+id/Txtclaveanterior"
@@ -90,39 +180,52 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/contrasenaanterior"
                         android:inputType="text|textPassword"
+                        android:drawableStart="@drawable/ic_vpn_key_black_24dp"
                         android:textAllCaps="true"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/negro"
+                        android:textColorHint="@color/colorhint"
                         android:textStyle="normal|bold" />
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:hint="@string/Contrasena"
+                    android:textColorHint="@color/colorhint">
 
                     <EditText
                         android:id="@+id/Txtclave"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/Contrasena"
-                        android:inputType="text|textPassword"
+                                               android:inputType="text|textPassword"
+                        android:drawableStart="@drawable/ic_vpn_key_black_24dp"
                         android:textAllCaps="true"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textStyle="normal|bold" />
+                        android:textColor="@color/negro"
+                            android:textStyle="normal|bold" />
                 </android.support.design.widget.TextInputLayout>
 
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:hint="@string/repetircontrasena"
+                    android:textColorHint="@color/colorhint"
+                    app:hintAnimationEnabled="true">
 
                     <EditText
                         android:id="@+id/Txtclaverepetir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/rRepetircontrasena"
+                        android:drawableStart="@drawable/ic_vpn_key_black_24dp"
                         android:inputType="textPassword"
                         android:textAllCaps="true"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textStyle="normal|bold" />
+                        android:textColor="@color/negro"
+                                       android:textStyle="normal|bold" />
 
 
                 </android.support.design.widget.TextInputLayout>
@@ -143,7 +246,7 @@
 
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="2dp"
-
+                    android:drawableStart="@drawable/ic_perm_identity_black_24dp"
                     android:layout_weight="1"
                     android:background="#dd4b39"
                     android:paddingEnd="20dp"
@@ -158,15 +261,15 @@
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:textStyle="normal|bold" />
+
                 <Button
-                    android:id="@+id/Bregistousuariolistar"
+                    android:id="@+id/Bregistousuariocancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Registrousuariolistar"
                     android:layout_gravity="center"
                     android:layout_marginBottom="2dp"
                     android:layout_marginLeft="8dp"
-
+                    android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="2dp"
 
@@ -177,7 +280,7 @@
                     android:shadowDx="3"
                     android:shadowDy="3"
                     android:shadowRadius="15"
-
+                    android:text="@string/cancelar"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textAppearance="?android:attr/textAppearanceSmall"

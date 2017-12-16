@@ -16,4 +16,8 @@
 
     <color name="colorviewcobro">#096e86</color>
 
+    <color name="black_overlay">#daf7f7f7</color>
+    <color name="black_overlayback">#78363636</color>
+    <color name="colorhint">#474747</color>
+
 </resources>

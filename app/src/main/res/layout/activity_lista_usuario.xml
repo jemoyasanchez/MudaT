@@ -7,22 +7,19 @@
     android:orientation="vertical"
     tools:context="com.itla.mudat.View.ListaUsuario">
 
-
-    <Button
-        android:id="@+id/BregistrodeUsu"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_margin="4dp"
-
-        android:background="#dd4b39"
-        android:text="@string/RegistrodeUsuario"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/Listausuario"
         android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textStyle="normal|bold" />
+        android:textAllCaps="true"
+        android:textColor="@color/negro"
+        android:textColorHighlight="@color/black_overlay"
+        android:textColorHint="@color/colorhint"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/LWlistausuarios"

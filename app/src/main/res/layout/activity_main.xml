@@ -8,22 +8,53 @@
     android:orientation="vertical"
     tools:context="com.itla.mudat.MainActivity">
 
-    <Button
-        android:id="@+id/Breigistrousu"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Registrousuario" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/BAnuncios"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Anuncios" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/BCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Categoria" />
+            <EditText
+                android:id="@+id/Txtusuaroplogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/usuario"
+                android:inputType="textAutoComplete"
+                android:textAllCaps="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="normal|bold" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/Txtusuariocontrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contrasenaanterior"
+                android:inputType="textPassword"
+                android:textAllCaps="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="normal|bold" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/Biniciarsesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Iniciarsesion" />
+
+        <Button
+            android:id="@+id/Bcrearcuentausuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/crearcuentadeusuario" />
+    </LinearLayout>
 
 </LinearLayout>

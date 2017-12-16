@@ -1,7 +1,10 @@
 package com.itla.mudat.Entity;
 
 
-public class Anuncio {
+import java.io.Serializable;
+import java.util.Date;
+
+public class Anuncio implements Serializable {
 
     public static final String nomtableanuncio="Anuncio";
     public static final String nomid="id";
@@ -18,7 +21,7 @@ public class Anuncio {
     private Integer id;
     private Integer categoria;
     private Integer usuario;
-    private String fecha;
+    private Date fecha;
     private String condicion;
     private Double precio;
     private String titulo;
@@ -50,11 +53,11 @@ public class Anuncio {
         this.usuario = usuario;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

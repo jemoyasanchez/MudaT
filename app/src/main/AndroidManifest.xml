@@ -14,9 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--
+            <activity
+            android:name=".SplashActivityIni"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash_ini"
+            android:theme="@style/FullscreenTheme"></activity>
+        -->
         <activity
-            android:name=".MenuPrincipal"
-            android:label="@string/title_activity_menu_principal"
+            android:name=".SplashActivityInic"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,18 +34,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View.RegistroUsuario"
-            android:label="@string/Registrousuario"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.itla.mudat.MainActivity" />
-        </activity>
-        <activity android:name=".View.RegistroCategoria" />
-        <activity android:name=".View.ListaUsuario" />
+            android:name=".View.RegistroCategoria"
+            android:configChanges="" />
+        <activity
+            android:name=".MenuPrincipal"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_menu_principal"
+            android:screenOrientation="sensor"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.RegistroAnuncio" />
         <activity android:name=".View.Publicaciones" />
-        <activity android:name=".View.MyPublicaciones"></activity>
+        <activity android:name=".View.MyPublicaciones" />
+        <!--
+               <activity
+              android:name=".ActividadIni"
+              android:configChanges="orientation|keyboardHidden|screenSize"
+              android:label="@string/title_activity_actividad_iniciar"
+              android:theme="@style/FullscreenTheme"></activity>
+        -->
+
+        <activity android:name=".IniciarSesionInic" />
+        <activity android:name=".ContenidoIniciar" />
+        <activity android:name=".PerfilDeUsuario"></activity>
     </application>
 
 </manifest>

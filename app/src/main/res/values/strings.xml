@@ -42,5 +42,30 @@
     <string name="contacto">Contacto</string>
     <string name="crearanuncio">Crear Anuncio</string>
     <string name="contrasenaanterior">Contraseña Anterior</string>
+    <string name="Iniciarsesion">Iniciar Sesión</string>
+    <string name="nombreusuario">Nombre de Usuario</string>
+    <string name="crearcuentadeusuario">Crear Cuenta</string>
+    <string name="usuario">Usuario</string>
+
+    <string name="title_activity_actividad_iniciar">ActividadIniciar</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_splash_ini">SplashActivityIni</string>
+
+    <string name="title_activity_splash_inic">SplashActivityInic</string>
+    <string name="repetircontrasena">Repetir Contraseña</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="tipousuario">Tipo de Usuario</string>
+    <string name="publicador">Publicador</string>
+    <string name="cliente">Cliente</string>
+    <string name="mantenerlasesioninciada">Mantener La Sesión Iniciada</string>
+    <string name="cerrarsesion">Cerrar Sesión</string>
+    <string name="megusta">Me Gusta</string>
+    <string name="listadepublicaciones">PUBLICACIONES</string>
+    <string name="perfilusuario">PERFIL DE USUARIO</string>
+    <string name="miperfil">Mi Perfil</string>
+    <string name="editarperfil">Editar Perfil</string>
+    <string name="comentario">Comentario</string>
 
 </resources>

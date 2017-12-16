@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.itla.mudat.Entity.Anuncio;
 import com.itla.mudat.Entity.Categoria;
+import com.itla.mudat.Entity.Constante;
 import com.itla.mudat.Entity.Usuario;
 
 public class DBConnection extends SQLiteOpenHelper {
@@ -28,7 +29,8 @@ public class DBConnection extends SQLiteOpenHelper {
             db.execSQL(SqlHelperSchema.CATEGORIA_TABLE);
             db.execSQL(SqlHelperSchema.ANUNCIO_TABLE);
             db.execSQL(SqlHelperSchema.CONSTANTE_TABLE);
-
+            db.execSQL(SqlHelperSchema.MEGUSTA_TABLE);
+            db.execSQL(SqlHelperSchema.COMENTARIO_TABLE);
             dataprueba(db);
         }catch (Exception e)
         {e.printStackTrace();}
@@ -42,10 +44,14 @@ public class DBConnection extends SQLiteOpenHelper {
 private void dataprueba(SQLiteDatabase db)
 {
     try {
-        db.execSQL("INSERT or replace INTO "+ Categoria.nomtableCategoria+" ("+Categoria.nomid+","+Categoria.nomnombre+") values(1,'Venta');");
-        db.execSQL("INSERT or replace INTO "+ Categoria.nomtableCategoria+" ("+Categoria.nomid+","+Categoria.nomnombre+") values(2,'Renta');");
+        db.execSQL("INSERT or replace INTO "+ Constante.nomtableConstante+" ("+Constante.nomip+","+Constante.nomid+") values(1,0);");
 
-        db.execSQL("INSERT or replace INTO "+ Usuario.nomtableUsuario+" ("+Usuario.nomid+","+ Usuario.nomnombre+","+ Usuario.nomtipousuario+","+ Usuario.nomidentificacion+"," +Usuario.nomemail+","+ Usuario.nomtelefono+","+Usuario.nomclave+","+Usuario.nomstatus+") values(1,'johan',1,'124567','johan@gmail.com','829-867-8635','1234',1);");
+        db.execSQL("INSERT or replace INTO "+ Categoria.nomtableCategoria+" ("+Categoria.nomid+","+Categoria.nomnombre+") values(1,'Casa');");
+        db.execSQL("INSERT or replace INTO "+ Categoria.nomtableCategoria+" ("+Categoria.nomid+","+Categoria.nomnombre+") values(2,'Apartamento');");
+        db.execSQL("INSERT or replace INTO "+ Categoria.nomtableCategoria+" ("+Categoria.nomid+","+Categoria.nomnombre+") values(3,'Aparta Estudio');");
+        db.execSQL("INSERT or replace INTO "+ Categoria.nomtableCategoria+" ("+Categoria.nomid+","+Categoria.nomnombre+") values(4,'Apartamento');");
+
+        db.execSQL("INSERT or replace INTO "+ Usuario.nomtableUsuario+" ("+Usuario.nomid+","+ Usuario.nomnombre+","+ Usuario.nomtipousuario+","+ Usuario.nomidentificacion+"," +Usuario.nomemail+","+ Usuario.nomtelefono+","+Usuario.nomclave+","+Usuario.nomstatus+") values(1,'johan',1,'1234','johan@gmail.com','829-867-8635','1234',1);");
         db.execSQL("INSERT or replace INTO "+ Usuario.nomtableUsuario+" ("+Usuario.nomid+","+ Usuario.nomnombre+","+ Usuario.nomtipousuario+","+ Usuario.nomidentificacion+"," +Usuario.nomemail+","+ Usuario.nomtelefono+","+Usuario.nomclave+","+Usuario.nomstatus+") values(2,'maria',1,'12gfg34567','maria@gmail.com','829-847-8465','1234',1);");
         db.execSQL("INSERT or replace INTO "+ Usuario.nomtableUsuario+" ("+Usuario.nomid+","+ Usuario.nomnombre+","+ Usuario.nomtipousuario+","+ Usuario.nomidentificacion+"," +Usuario.nomemail+","+ Usuario.nomtelefono+","+Usuario.nomclave+","+Usuario.nomstatus+") values(3,'luis',1,'1342347','luis@gmail.com','829-347-8536','1234',1);");
         db.execSQL("INSERT or replace INTO "+ Usuario.nomtableUsuario+" ("+Usuario.nomid+","+ Usuario.nomnombre+","+ Usuario.nomtipousuario+","+ Usuario.nomidentificacion+"," +Usuario.nomemail+","+ Usuario.nomtelefono+","+Usuario.nomclave+","+Usuario.nomstatus+") values(4,'josefina',1,'104e234567','josefina@gmail.com','829-363-7636','1234',1);");
@@ -63,6 +69,8 @@ private void dataprueba(SQLiteDatabase db)
         db.execSQL("INSERT or replace INTO "+ Anuncio.nomtableanuncio+" ("+  Anuncio.nomid+","+Anuncio.nomcategoria+","+Anuncio.nomusuario+","+ Anuncio.nomfecha+","+ Anuncio.nomcondicion+","+ Anuncio.nomprecio+","+ Anuncio.nomtitulo+","+  Anuncio.nomubicacion+","+ Anuncio.nomdetalle+") values(8,1,5,'12/12/2017','Nueva','2000000','Casa amplia de tres habitaciones','Santiago','');");
     }
     catch (Exception e)
-    {e.printStackTrace();}
+    {
+        e.printStackTrace();
+    }
 }
 }
