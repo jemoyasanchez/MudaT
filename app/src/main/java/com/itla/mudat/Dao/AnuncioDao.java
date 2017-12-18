@@ -4,22 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.SimpleAdapter;
 
 import com.itla.mudat.Entity.Anuncio;
-import com.itla.mudat.Entity.Categoria;
-import com.itla.mudat.Entity.Constante;
-import com.itla.mudat.Entity.Usuario;
-import com.itla.mudat.R;
 
-
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AnuncioDao implements Crud {
     private DBConnection connection;
@@ -28,9 +19,10 @@ public class AnuncioDao implements Crud {
     private Boolean vali = true;
     private static final SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
     CategoriaDao categoriaDao;
+
     public AnuncioDao(Context context) {
         connection = new DBConnection(context);
-        categoriaDao=new CategoriaDao(context);
+        categoriaDao = new CategoriaDao(context);
     }
 
     @Override
@@ -89,7 +81,7 @@ public class AnuncioDao implements Crud {
         List<Anuncio> anuncioslista = new ArrayList<>();
 
         db = connection.getReadableDatabase();
-        String columnas[] = new String[]{Anuncio.nomid, Anuncio.nomusuario,Anuncio.nomcategoria, Anuncio.nomfecha, Anuncio.nomcondicion, Anuncio.nomprecio, Anuncio.nomtitulo, Anuncio.nomubicacion, Anuncio.nomdetalle};
+        String columnas[] = new String[]{Anuncio.nomid, Anuncio.nomusuario, Anuncio.nomcategoria, Anuncio.nomfecha, Anuncio.nomcondicion, Anuncio.nomprecio, Anuncio.nomtitulo, Anuncio.nomubicacion, Anuncio.nomdetalle};
         Cursor cursor = db.query(Anuncio.nomtableanuncio, columnas, null, null, null, null, Anuncio.nomid + " DESC");
         anuncioslista = null;
         try {
@@ -99,8 +91,8 @@ public class AnuncioDao implements Crud {
                     anuncio = new Anuncio();
                     anuncio.setId(cursor.getInt(cursor.getColumnIndex(Anuncio.nomid)));
                     anuncio.setCategoria(cursor.getInt(cursor.getColumnIndex(Anuncio.nomcategoria)));
-                    anuncio.setUsuario(  cursor.getInt(cursor.getColumnIndex(Anuncio.nomusuario)));
-                   try {
+                    anuncio.setUsuario(cursor.getInt(cursor.getColumnIndex(Anuncio.nomusuario)));
+                    try {
                         anuncio.setFecha(DF.parse(cursor.getString(cursor.getColumnIndex(Anuncio.nomfecha))));
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -121,13 +113,14 @@ public class AnuncioDao implements Crud {
         }
         return anuncioslista;
     }
+
     public List<?> ListaridUsuario(Integer id) {
         List<Anuncio> anuncioslista = new ArrayList<>();
         String where = Anuncio.nomusuario + " = ?";
         String[] whereArgs = {"" + id + ""};
         db = connection.getReadableDatabase();
-        String columnas[] = new String[]{Anuncio.nomid, Anuncio.nomusuario,Anuncio.nomcategoria, Anuncio.nomfecha, Anuncio.nomcondicion, Anuncio.nomprecio, Anuncio.nomtitulo, Anuncio.nomubicacion, Anuncio.nomdetalle};
-        Cursor cursor = db.query(Anuncio.nomtableanuncio, columnas,  where, whereArgs, null, null, Anuncio.nomid + " DESC");
+        String columnas[] = new String[]{Anuncio.nomid, Anuncio.nomusuario, Anuncio.nomcategoria, Anuncio.nomfecha, Anuncio.nomcondicion, Anuncio.nomprecio, Anuncio.nomtitulo, Anuncio.nomubicacion, Anuncio.nomdetalle};
+        Cursor cursor = db.query(Anuncio.nomtableanuncio, columnas, where, whereArgs, null, null, Anuncio.nomid + " DESC");
         anuncioslista = null;
         try {
             if (cursor.moveToFirst()) {
@@ -136,7 +129,7 @@ public class AnuncioDao implements Crud {
                     anuncio = new Anuncio();
                     anuncio.setId(cursor.getInt(cursor.getColumnIndex(Anuncio.nomid)));
                     anuncio.setCategoria(cursor.getInt(cursor.getColumnIndex(Anuncio.nomcategoria)));
-                    anuncio.setUsuario(  cursor.getInt(cursor.getColumnIndex(Anuncio.nomusuario)));
+                    anuncio.setUsuario(cursor.getInt(cursor.getColumnIndex(Anuncio.nomusuario)));
                     try {
                         anuncio.setFecha(DF.parse(cursor.getString(cursor.getColumnIndex(Anuncio.nomfecha))));
                     } catch (ParseException e) {
@@ -237,36 +230,36 @@ public class AnuncioDao implements Crud {
 //            return lista;
 //        }
 
-        @Override
-        public Object Buscar ( int item){
+    @Override
+    public Object Buscar(int item) {
 
-            db = connection.getReadableDatabase();
-            String where = Anuncio.nomid + " = ?";
-            String[] whereArgs = {"" + item + ""};
-            String columnas[] = new String[]{Anuncio.nomid, Anuncio.nomusuario, Anuncio.nomfecha, Anuncio.nomcondicion, Anuncio.nomprecio, Anuncio.nomtitulo, Anuncio.nomubicacion, Anuncio.nomdetalle};
-            Cursor cursor = db.query(Anuncio.nomtableanuncio, columnas, where, whereArgs, null, null, null);
-            anuncio = null;
+        db = connection.getReadableDatabase();
+        String where = Anuncio.nomid + " = ?";
+        String[] whereArgs = {"" + item + ""};
+        String columnas[] = new String[]{Anuncio.nomid, Anuncio.nomusuario, Anuncio.nomfecha, Anuncio.nomcondicion, Anuncio.nomprecio, Anuncio.nomtitulo, Anuncio.nomubicacion, Anuncio.nomdetalle};
+        Cursor cursor = db.query(Anuncio.nomtableanuncio, columnas, where, whereArgs, null, null, null);
+        anuncio = null;
 
-            try {
-                if (cursor.moveToFirst()) {
+        try {
+            if (cursor.moveToFirst()) {
 
-                    anuncio = new Anuncio();
-                    anuncio.setId(cursor.getInt(cursor.getColumnIndex(Anuncio.nomid)));
-                    anuncio.setCategoria(cursor.getInt(cursor.getColumnIndex(Anuncio.nomcategoria)));
-                    //anuncio.setUsuario(Usuario.va(  cursor.getString(cursor.getColumnIndex(RegistroAnuncio.nomusuario)));
-                    // u.setTipousuario(TipoUsuario.valueOf( cursor.getString(cursor.getColumnIndex("tipousuario"))));
+                anuncio = new Anuncio();
+                anuncio.setId(cursor.getInt(cursor.getColumnIndex(Anuncio.nomid)));
+                anuncio.setCategoria(cursor.getInt(cursor.getColumnIndex(Anuncio.nomcategoria)));
+                //anuncio.setUsuario(Usuario.va(  cursor.getString(cursor.getColumnIndex(RegistroAnuncio.nomusuario)));
+                // u.setTipousuario(TipoUsuario.valueOf( cursor.getString(cursor.getColumnIndex("tipousuario"))));
 
-                    //  anuncio.setFecha(cursor.getString(cursor.getColumnIndex(RegistroAnuncio.nomfecha)));
-                    anuncio.setCondicion(cursor.getString(cursor.getColumnIndex(Anuncio.nomcondicion)));
-                    anuncio.setPrecio(cursor.getDouble(cursor.getColumnIndex(Anuncio.nomprecio)));
-                    anuncio.setTitulo(cursor.getString(cursor.getColumnIndex(Anuncio.nomtitulo)));
-                    anuncio.setUbicacion(cursor.getString(cursor.getColumnIndex(Anuncio.nomubicacion)));
-                    anuncio.setDetalle(cursor.getString(cursor.getColumnIndex(Anuncio.nomdetalle)));
-                }
-            } finally {
-                cursor.close();
-                db.close();
+                //  anuncio.setFecha(cursor.getString(cursor.getColumnIndex(RegistroAnuncio.nomfecha)));
+                anuncio.setCondicion(cursor.getString(cursor.getColumnIndex(Anuncio.nomcondicion)));
+                anuncio.setPrecio(cursor.getDouble(cursor.getColumnIndex(Anuncio.nomprecio)));
+                anuncio.setTitulo(cursor.getString(cursor.getColumnIndex(Anuncio.nomtitulo)));
+                anuncio.setUbicacion(cursor.getString(cursor.getColumnIndex(Anuncio.nomubicacion)));
+                anuncio.setDetalle(cursor.getString(cursor.getColumnIndex(Anuncio.nomdetalle)));
             }
-            return anuncio;
+        } finally {
+            cursor.close();
+            db.close();
         }
+        return anuncio;
     }
+}

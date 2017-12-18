@@ -1,14 +1,11 @@
 package com.itla.mudat.Entity;
 
-
-
 public class MeGusta {
-
-    public static final String nomtableMeGusta="MeGusta";
-    public static final String nomid="id";
-    public static final String nomusuario="usuario";
-    public static final String nomanuncio="anuncio";
-    public static final String nomgusta="gusta";
+    public static final String nomtableMeGusta = "MeGusta";
+    public static final String nomid = "id";
+    public static final String nomusuario = "usuario";
+    public static final String nomanuncio = "anuncio";
+    public static final String nomgusta = "gusta";
     private Integer id;
     private Integer usuario;
     private Integer anuncio;

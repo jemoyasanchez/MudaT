@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class ComentarioDao implements Crud {
     private DBConnection connection;
     private SQLiteDatabase db;
@@ -105,7 +104,7 @@ public class ComentarioDao implements Crud {
         comentario = null;
         try {
             if (cursor.moveToFirst()) {
-comentario=new Comentario();
+                comentario = new Comentario();
                 comentario.setId(cursor.getInt(cursor.getColumnIndex(Comentario.nomid)));
                 comentario.setUsuario(cursor.getInt(cursor.getColumnIndex(Comentario.nomusuario)));
                 comentario.setAnuncio(cursor.getInt(cursor.getColumnIndex(Comentario.nomanuncio)));

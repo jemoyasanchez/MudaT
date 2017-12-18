@@ -1,10 +1,10 @@
 package com.itla.mudat.Entity;
 
 
-public class Constante{
-    public static final String nomtableConstante="Constante";
-    public static final String nomid="id";
-    public static final String nomip="ip";
+public class Constante {
+    public static final String nomtableConstante = "Constante";
+    public static final String nomid = "id";
+    public static final String nomip = "ip";
     private Integer ip;
     private Integer id;
 

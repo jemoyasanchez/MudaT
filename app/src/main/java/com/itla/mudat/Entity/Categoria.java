@@ -4,9 +4,9 @@ package com.itla.mudat.Entity;
 public class Categoria {
 
 
-    public static final String nomtableCategoria="Categoria";
-    public static final String nomid="id";
-    public static final String nomnombre="nombre";
+    public static final String nomtableCategoria = "Categoria";
+    public static final String nomid = "id";
+    public static final String nomnombre = "nombre";
 
     private Integer id;
     private String nombre;

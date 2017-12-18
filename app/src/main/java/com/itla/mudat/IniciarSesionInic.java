@@ -22,7 +22,6 @@ import com.itla.mudat.Dao.UsuarioDao;
 import com.itla.mudat.Entity.Constante;
 import com.itla.mudat.Entity.Usuario;
 
-
 public class IniciarSesionInic extends Fragment implements View.OnClickListener {
     private Button Biniciarsesion;
     private Button Bcancelarsesion;

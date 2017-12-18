@@ -2,36 +2,24 @@ package com.itla.mudat.View;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.RadioButton;
 import android.widget.Toast;
-
 import com.itla.mudat.ContenidoIniciar;
 import com.itla.mudat.Dao.UsuarioDao;
-import com.itla.mudat.Entity.TipoUsuario;
 import com.itla.mudat.Entity.Usuario;
-import com.itla.mudat.IniciarSesionInic;
 import com.itla.mudat.PerfilDeUsuario;
 import com.itla.mudat.R;
-import com.itla.mudat.SplashActivityInic;
-
-import java.io.RandomAccessFile;
-
 
 public class RegistroUsuario extends Fragment implements  View.OnClickListener  {
     private EditText Editnombreusuario;

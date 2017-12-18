@@ -1,48 +1,33 @@
 package com.itla.mudat.View;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
+
 import com.itla.mudat.Dao.AnuncioDao;
 import com.itla.mudat.Entity.Anuncio;
 import com.itla.mudat.ListAdapter.AnuncioListAdapter;
 import com.itla.mudat.R;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class Publicaciones extends Fragment  {
+public class Publicaciones extends Fragment {
     private static ListView listViewpublicacion;
     private static Button Bregistroanuncio;
 
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_publicaciones, container, false);
-        try{
+        try {
 
             getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
             listViewpublicacion = (ListView) v.findViewById(R.id.LWlistaAnuncios);
@@ -58,7 +43,7 @@ public class Publicaciones extends Fragment  {
                             fragmentTransaction.replace(R.id.frameloy, fragment1);
                             Bundle args = new Bundle();
 
-                            args.putSerializable(Anuncio.nomtableanuncio,null);
+                            args.putSerializable(Anuncio.nomtableanuncio, null);
                             args.putString("nuevo", "publicaciones");
                             fragment1.setArguments(args);
                             fragmentTransaction.commit();
@@ -80,22 +65,19 @@ public class Publicaciones extends Fragment  {
     }
 
 
-    public static  void cargaranuncios(Activity activity)
-    {
-        try
-        {
-            AnuncioDao anuncioDao = new AnuncioDao( activity);
+    public static void cargaranuncios(Activity activity) {
+        try {
+            AnuncioDao anuncioDao = new AnuncioDao(activity);
 
             List<Anuncio> anunciosl = new ArrayList<>();
             anunciosl = (List<Anuncio>) anuncioDao.Listar();
             if (anunciosl != null) {
                 listViewpublicacion.setAdapter(new AnuncioListAdapter(anunciosl, activity));
-            }else {
+            } else {
                 listViewpublicacion.setAdapter(null);
             }
 
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

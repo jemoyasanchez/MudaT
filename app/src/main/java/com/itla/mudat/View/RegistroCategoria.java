@@ -13,7 +13,6 @@ import com.itla.mudat.R;
 import java.util.List;
 import java.util.Map;
 
-
 public class RegistroCategoria extends AppCompatActivity {
     private EditText Tbnombrecategoria;
     private Button Bnuevo;
@@ -24,9 +23,10 @@ public class RegistroCategoria extends AppCompatActivity {
     private Categoria categoria;
     private CategoriaDao Categoria;
     private View rootView;
-  //  private SpinnerDialog splistpais;
+    //  private SpinnerDialog splistpais;
 
     List<Map<String, String>> listpais;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,24 +1,15 @@
 package com.itla.mudat.View;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.support.annotation.Nullable;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
@@ -34,7 +25,6 @@ import com.itla.mudat.PerfilDeUsuario;
 import com.itla.mudat.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -106,26 +96,21 @@ public class RegistroAnuncio extends android.support.v4.app.Fragment {
                                         toast("Anuncio Registrado Exitosamente.");
                                         Nuevo();
                                         try {
-                                            if(iniclognuevo.equals("perfilusuario"))
-                                            {
+                                            if (iniclognuevo.equals("perfilusuario")) {
                                                 try {
                                                     PerfilDeUsuario fragment1 = new PerfilDeUsuario();
                                                     android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                                     fragmentTransaction.replace(R.id.frameloy, fragment1);
                                                     fragmentTransaction.commit();
-                                                }catch (Exception e)
-                                                {
+                                                } catch (Exception e) {
                                                     e.printStackTrace();
                                                 }
-                                            }
-                                            else if (iniclognuevo.equals("publicaciones")){
+                                            } else if (iniclognuevo.equals("publicaciones")) {
                                                 Publicaciones fragment1 = new Publicaciones();
                                                 android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                                 fragmentTransaction.replace(R.id.frameloy, fragment1);
                                                 fragmentTransaction.commit();
-                                            }
-                                            else if (iniclognuevo.equals("anunciolistadapter"))
-                                            {
+                                            } else if (iniclognuevo.equals("anunciolistadapter")) {
                                                 Publicaciones fragment1 = new Publicaciones();
                                                 android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                                 fragmentTransaction.replace(R.id.frameloy, fragment1);
@@ -150,26 +135,21 @@ public class RegistroAnuncio extends android.support.v4.app.Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 try {
-                                    if(iniclognuevo.equals("perfilusuario"))
-                                    {
+                                    if (iniclognuevo.equals("perfilusuario")) {
                                         try {
                                             PerfilDeUsuario fragment1 = new PerfilDeUsuario();
                                             android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                             fragmentTransaction.replace(R.id.frameloy, fragment1);
                                             fragmentTransaction.commit();
-                                        }catch (Exception e)
-                                        {
+                                        } catch (Exception e) {
                                             e.printStackTrace();
                                         }
-                                    }
-                                    else if (iniclognuevo.equals("publicaciones")){
+                                    } else if (iniclognuevo.equals("publicaciones")) {
                                         Publicaciones fragment1 = new Publicaciones();
                                         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                         fragmentTransaction.replace(R.id.frameloy, fragment1);
                                         fragmentTransaction.commit();
-                                    }
-                                    else if (iniclognuevo.equals("anunciolistadapter"))
-                                    {
+                                    } else if (iniclognuevo.equals("anunciolistadapter")) {
                                         Publicaciones fragment1 = new Publicaciones();
                                         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                         fragmentTransaction.replace(R.id.frameloy, fragment1);
@@ -226,14 +206,14 @@ public class RegistroAnuncio extends android.support.v4.app.Fragment {
 
             if (anuncio != null) {
                 cargarunidad();
-if(elegido!=null) {
-    selectSpinnerValueEdit(lista, (String) elegido.get(Categoria.nomid));
-}
+                if (elegido != null) {
+                    selectSpinnerValueEdit(lista, (String) elegido.get(Categoria.nomid));
+                }
                 txttitulo.setText(anuncio.getTitulo());
                 txtdetalle.setText(anuncio.getDetalle());
                 txtcondicion.setText(anuncio.getCondicion());
                 txtubicacion.setText(anuncio.getUbicacion());
-                txtprecio.setText(String.valueOf( anuncio.getPrecio()));
+                txtprecio.setText(String.valueOf(anuncio.getPrecio()));
             }
         }
 

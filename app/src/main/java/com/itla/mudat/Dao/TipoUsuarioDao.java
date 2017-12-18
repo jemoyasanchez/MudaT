@@ -18,8 +18,7 @@ public class TipoUsuarioDao implements Crud {
     private SQLiteDatabase db;
     private TipoUsuario tipousuario;
 
-    public TipoUsuarioDao(Context context)
-    {
+    public TipoUsuarioDao(Context context) {
         connection = new DBConnection(context);
     }
 
@@ -33,15 +32,12 @@ public class TipoUsuarioDao implements Crud {
 
             db.beginTransaction();
             db.insert(TipoUsuario.nomtableTipoUsuario, null, cv);
-             db.endTransaction();
-        }
-        catch (Exception e)
-        {
+            db.endTransaction();
+        } catch (Exception e) {
 
             e.printStackTrace();
             return false;
-        }
-        finally {
+        } finally {
             if (db.isOpen()) {
                 db.close();
             }
@@ -54,14 +50,12 @@ public class TipoUsuarioDao implements Crud {
     public Boolean Eliminar(Object item) {
 
         try {
-              tipousuario = (TipoUsuario) item;
-             db = connection.getWritableDatabase();
+            tipousuario = (TipoUsuario) item;
+            db = connection.getWritableDatabase();
 
-            db.delete(TipoUsuario.nomtableTipoUsuario, TipoUsuario.nomid+"=?",new String[] {""+tipousuario.getId()+""});
+            db.delete(TipoUsuario.nomtableTipoUsuario, TipoUsuario.nomid + "=?", new String[]{"" + tipousuario.getId() + ""});
             db.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -70,18 +64,17 @@ public class TipoUsuarioDao implements Crud {
 
     @Override
     public List<?> Listar() throws SQLException {
-        List<TipoUsuario> tipousuariolistar= new ArrayList<>();
+        List<TipoUsuario> tipousuariolistar = new ArrayList<>();
 
         db = connection.getReadableDatabase();
         String columnas[] = new String[]{TipoUsuario.nomid, TipoUsuario.nomnombre};
         Cursor cursor = db.query(TipoUsuario.nomtableTipoUsuario, columnas, null, null, null, null, null);
-        tipousuariolistar=null;
-        try
-        {
+        tipousuariolistar = null;
+        try {
             if (cursor.moveToFirst()) {
-              tipousuariolistar=new ArrayList<>();
+                tipousuariolistar = new ArrayList<>();
                 while (!cursor.isAfterLast()) {
-                   // tipousuario = new TipoUsuario();
+                    // tipousuario = new TipoUsuario();
                     tipousuario.setId(cursor.getInt(cursor.getColumnIndex(TipoUsuario.nomid)));
                     tipousuario.setNombre(cursor.getString(cursor.getColumnIndex(TipoUsuario.nomnombre)));
 
@@ -99,9 +92,9 @@ public class TipoUsuarioDao implements Crud {
 
     @Override
     public Object Buscar(int item) {
-        db =  connection.getReadableDatabase();
+        db = connection.getReadableDatabase();
         String where = TipoUsuario.nomid + " = ?";
-        String[] whereArgs = {""+item+""};
+        String[] whereArgs = {"" + item + ""};
         String columnas[] = new String[]{TipoUsuario.nomid, TipoUsuario.nomnombre};
         Cursor cursor = db.query(TipoUsuario.nomtableTipoUsuario, columnas, where, whereArgs, null, null, null);
 

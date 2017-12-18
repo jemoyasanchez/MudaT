@@ -30,17 +30,16 @@ public class MeGustaDao implements Crud {
             megusta = (MeGusta) item;
             db = connection.getWritableDatabase();
             ContentValues cv = new ContentValues();
-            cv.put(MeGusta.nomid,megusta.getId());
+            cv.put(MeGusta.nomid, megusta.getId());
             cv.put(MeGusta.nomusuario, megusta.getUsuario());
             cv.put(MeGusta.nomanuncio, megusta.getAnuncio());
             cv.put(MeGusta.nomgusta, megusta.getGusta());
-            if (megusta.getId() ==null) {
+            if (megusta.getId() == null) {
                 db.insert(MeGusta.nomtableMeGusta, null, cv);
             } else {
                 db.delete(MeGusta.nomtableMeGusta, MeGusta.nomid + "=?", new String[]{"" + megusta.getId() + ""});
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             vali = false;
             e.printStackTrace();
 
@@ -140,9 +139,9 @@ public class MeGustaDao implements Crud {
                 megusta.setGusta(cursor.getInt(cursor.getColumnIndex(MeGusta.nomgusta)));
 
             }
-        }catch (Exception e){
-            e.printStackTrace();}
-        finally {
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             cursor.close();
             db.close();
         }

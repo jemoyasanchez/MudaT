@@ -9,8 +9,8 @@ import com.itla.mudat.Entity.Usuario;
 
 public class ClaseConstante {
 
-    private static Constante constante=null;
-    private static Usuario usuario=null;
+    private static Constante constante = null;
+    private static Usuario usuario = null;
 
     public static Constante getConstante() {
         return constante;
@@ -28,12 +28,11 @@ public class ClaseConstante {
         ClaseConstante.usuario = usuario;
     }
 
-    public static void SetConfiguracionConstate(Constante constante, Activity activity)
-    {
-        Usuario usuario=new Usuario();
-        UsuarioDao usuarioDao=new UsuarioDao(activity);
+    public static void SetConfiguracionConstate(Constante constante, Activity activity) {
+        Usuario usuario = new Usuario();
+        UsuarioDao usuarioDao = new UsuarioDao(activity);
         setConstante(constante);
-        usuario= (Usuario) usuarioDao.Buscar(constante.getId());
+        usuario = (Usuario) usuarioDao.Buscar(constante.getId());
 
         setUsuario(usuario);
 

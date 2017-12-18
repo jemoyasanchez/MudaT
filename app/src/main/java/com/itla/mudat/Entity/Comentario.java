@@ -1,13 +1,12 @@
 package com.itla.mudat.Entity;
 
 
-
 public class Comentario {
-    public static final String nomtableComentario="Comentario";
-    public static final String nomid="id";
-    public static final String nomusuario="usuario";
-    public static final String nomanuncio="anuncio";
-    public static final String nomcomentario="comentario";
+    public static final String nomtableComentario = "Comentario";
+    public static final String nomid = "id";
+    public static final String nomusuario = "usuario";
+    public static final String nomanuncio = "anuncio";
+    public static final String nomcomentario = "comentario";
     private Integer id;
     private Integer usuario;
     private Integer anuncio;

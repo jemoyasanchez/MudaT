@@ -2,22 +2,16 @@ package com.itla.mudat.ListAdapter;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.itla.mudat.ClasesConsta.ClaseConstante;
@@ -29,11 +23,9 @@ import com.itla.mudat.Entity.Usuario;
 import com.itla.mudat.R;
 import com.itla.mudat.View.RegistroAnuncio;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
-public class AnuncioListAdapter extends BaseAdapter   {
+public class AnuncioListAdapter extends BaseAdapter {
 
     private List<Anuncio> anuncios;
     private Activity context;
@@ -74,7 +66,7 @@ public class AnuncioListAdapter extends BaseAdapter   {
             TextView luusuario = view.findViewById(R.id.LUusuario);
             ImageButton luimagebutton = view.findViewById(R.id.ib_popup_menu);
             final Button meg = view.findViewById(R.id.idmegusta);
-            Button editar =  view.findViewById(R.id.ideditarcc);
+            Button editar = view.findViewById(R.id.ideditarcc);
             u = anuncios.get(position);
 
             luCodigo.setText(String.valueOf(u.getId()));
@@ -150,16 +142,16 @@ public class AnuncioListAdapter extends BaseAdapter   {
             });
 
 
-           editar.setOnClickListener(new View.OnClickListener() {
+            editar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     try {
                         RegistroAnuncio fragment1 = new RegistroAnuncio();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.frameloy, fragment1);
                         Bundle args = new Bundle();
 
-                        args.putSerializable(Anuncio.nomtableanuncio,  u);
+                        args.putSerializable(Anuncio.nomtableanuncio, u);
                         args.putString("nuevo", "anunciolistadapter");
                         fragment1.setArguments(args);
                         fragmentTransaction.commit();

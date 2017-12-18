@@ -6,16 +6,16 @@ import java.util.Date;
 
 public class Anuncio implements Serializable {
 
-    public static final String nomtableanuncio="Anuncio";
-    public static final String nomid="id";
-    public static final String nomcategoria="categoria";
-    public static final String nomusuario="usuario";
-    public static final String nomfecha="fecha";
-    public static final String nomcondicion="condicion";
-    public static final String nomprecio="precio";
-    public static final String nomtitulo="titulo";
-    public static final String nomubicacion="ubicacion";
-    public static final String nomdetalle="detalle";
+    public static final String nomtableanuncio = "Anuncio";
+    public static final String nomid = "id";
+    public static final String nomcategoria = "categoria";
+    public static final String nomusuario = "usuario";
+    public static final String nomfecha = "fecha";
+    public static final String nomcondicion = "condicion";
+    public static final String nomprecio = "precio";
+    public static final String nomtitulo = "titulo";
+    public static final String nomubicacion = "ubicacion";
+    public static final String nomdetalle = "detalle";
 
 
     private Integer id;

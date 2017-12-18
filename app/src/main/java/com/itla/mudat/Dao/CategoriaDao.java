@@ -1,6 +1,5 @@
 package com.itla.mudat.Dao;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,9 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.itla.mudat.Entity.Categoria;
 
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +14,9 @@ public class CategoriaDao implements Crud {
     private DBConnection connection;
     private SQLiteDatabase db;
     private Categoria categoria;
-    Boolean vali=true;
+    Boolean vali = true;
 
-    public CategoriaDao(Context context)
-    {
+    public CategoriaDao(Context context) {
         connection = new DBConnection(context);
     }
 
@@ -30,26 +25,22 @@ public class CategoriaDao implements Crud {
     public Boolean Crear(Object item) {
 
         try {
-            vali=true;
+            vali = true;
             categoria = (Categoria) item;
             db = connection.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(Categoria.nomnombre, categoria.getNombre());
 
-            if (categoria.getId()==null )
+            if (categoria.getId() == null)
                 db.insert(Categoria.nomtableCategoria, null, cv);
 
             else
-                db.update(Categoria.nomtableCategoria,  cv,Categoria.nomid+"=?",new String[] {""+categoria.getId()+""} );
+                db.update(Categoria.nomtableCategoria, cv, Categoria.nomid + "=?", new String[]{"" + categoria.getId() + ""});
 
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-            vali= false;
-        }
-        finally {
+            vali = false;
+        } finally {
             // db.close();
         }
         return vali;
@@ -57,18 +48,14 @@ public class CategoriaDao implements Crud {
 
     @Override
     public Boolean Eliminar(Object item) {
-        try
-        {
+        try {
             categoria = (Categoria) item;
             db = connection.getWritableDatabase();
-            db.delete(Categoria.nomtableCategoria, Categoria.nomid+"=?",new String[] {""+categoria.getId()+""});
-        }
-        catch (Exception e)
-        {
+            db.delete(Categoria.nomtableCategoria, Categoria.nomid + "=?", new String[]{"" + categoria.getId() + ""});
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }
-        finally {
+        } finally {
             //db.close();
         }
         return true;
@@ -100,18 +87,18 @@ public class CategoriaDao implements Crud {
         }
         return categoriaslista;
     }
+
     @Override
     public Object Buscar(int item) {
-        db =  connection.getReadableDatabase();
+        db = connection.getReadableDatabase();
         String where = Categoria.nomid + " = ?";
-        String[] whereArgs = {""+item+""};
+        String[] whereArgs = {"" + item + ""};
         String columnas[] = new String[]{Categoria.nomid, Categoria.nomnombre};
         Cursor cursor = db.query(Categoria.nomtableCategoria, columnas, where, whereArgs, null, null, null);
 
         categoria = null;
         try {
-            if (cursor.moveToFirst())
-            {
+            if (cursor.moveToFirst()) {
 
                 categoria = new Categoria();
                 categoria.setId(cursor.getInt(cursor.getColumnIndex(Categoria.nomid)));
